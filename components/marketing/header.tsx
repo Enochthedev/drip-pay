@@ -47,9 +47,7 @@ export default function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out py-2",
-        isScrolled || mobileMenuOpen
-          ? "bg-ghost_white/90 backdrop-blur-lg shadow-md border-b border-slate-200/70" // Scrolled: light bg
-          : "bg-transparent backdrop-blur-none shadow-none border-b border-transparent", // Top: transparent
+        "bg-transparent border-b border-transparent", // Always transparent, no shadow or backdrop on the header bar itself
       )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
