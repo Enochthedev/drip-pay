@@ -3,7 +3,6 @@ import WhyDripPaySection from "@/components/marketing/why-drippay-section"
 import UseCasesSection from "@/components/marketing/use-cases-section"
 import DeveloperPreviewSection from "@/components/marketing/developer-preview-section"
 import EcosystemSection from "@/components/marketing/ecosystem-section"
-import FooterSection from "@/components/marketing/footer-section"
 
 export default function LandingPage() {
   return (
@@ -17,7 +16,6 @@ export default function LandingPage() {
         <DeveloperPreviewSection />
         <EcosystemSection />
       </main>
-      <FooterSection />
     </div>
   )
 }

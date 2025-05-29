@@ -1,6 +1,6 @@
 import type React from "react"
 import FooterSection from "@/components/marketing/footer-section"
-// import Header from "@/components/marketing/header" // Header import removed
+import Header from "@/components/marketing/header" // Ensure Header is imported
 
 export default function MarketingLayout({
   children,
@@ -9,7 +9,7 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen bg-ghost_white text-slate_gray">
-      {/* <Header /> */} {/* Header component usage removed */}
+      <Header /> {/* Ensure Header is rendered */}
       <main className="flex-grow">{children}</main>
       <FooterSection />
     </div>
