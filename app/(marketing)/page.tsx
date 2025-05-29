@@ -1,9 +1,9 @@
-import HeroSection from "@/components/landing/hero-section"
-import WhyDripPaySection from "@/components/landing/why-drippay-section"
-import UseCasesSection from "@/components/landing/use-cases-section"
-import DeveloperPreviewSection from "@/components/landing/developer-preview-section"
-import EcosystemSection from "@/components/landing/ecosystem-section"
-import FooterSection from "@/components/landing/footer-section"
+import HeroSection from "@/components/marketing/hero-section"
+import WhyDripPaySection from "@/components/marketing/why-drippay-section"
+import UseCasesSection from "@/components/marketing/use-cases-section"
+import DeveloperPreviewSection from "@/components/marketing/developer-preview-section"
+import EcosystemSection from "@/components/marketing/ecosystem-section"
+import FooterSection from "@/components/marketing/footer-section"
 
 export default function LandingPage() {
   return (
