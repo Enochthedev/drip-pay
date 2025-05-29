@@ -22,43 +22,76 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      setIsScrolled(window.scrollY > 20) // Increased threshold slightly
     }
     window.addEventListener("scroll", handleScroll)
+    // Set initial state in case page loads scrolled
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const baseGroupStyle = "transition-all duration-300 ease-in-out flex items-center"
+  const scrolledGroupStyle = "bg-white/70 backdrop-blur-md shadow-sm border border-slate-200/60"
+  const transparentGroupStyle = "bg-transparent shadow-none border border-transparent"
+
+  const dynamicTextColor = isScrolled || mobileMenuOpen ? "text-midnight_navy" : "text-midnight_navy" // Keep dark for light bg
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out",
+        "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out py-2", // Added py-2 for spacing of groups
         isScrolled || mobileMenuOpen
-          ? "bg-ghost_white/90 backdrop-blur-lg shadow-md border-b border-slate-200/80"
+          ? "bg-ghost_white/80 backdrop-blur-lg shadow-md border-b border-slate-200/70"
           : "bg-transparent backdrop-blur-none shadow-none border-b border-transparent",
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+      <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Group 1: Logo + Name */}
+        <Link
+          href="/"
+          className={cn(
+            baseGroupStyle,
+            "px-3 py-1.5 rounded-full",
+            isScrolled ? scrolledGroupStyle : transparentGroupStyle,
+          )}
+        >
           <Image
             src="/images/drippay-logo.png"
             alt="DripPay Logo"
-            width={110}
-            height={27.5}
+            width={28} // Adjusted size
+            height={28}
             priority
-            className={cn(isScrolled || mobileMenuOpen ? "" : "filter brightness-[0.1]")} // Darken logo on transparent bg
+            className={cn(isScrolled ? "" : "filter brightness-[0.1]")}
           />
+          <span
+            className={cn(
+              "ml-2 text-lg font-grotesk font-bold",
+              dynamicTextColor,
+              isScrolled ? "" : "filter brightness-[0.1]",
+            )}
+          >
+            DripPay
+          </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Group 2: Desktop Navigation */}
+        <nav
+          className={cn(
+            baseGroupStyle,
+            "hidden md:flex space-x-1 px-2 py-1.5 rounded-full",
+            isScrolled ? scrolledGroupStyle : transparentGroupStyle,
+          )}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-electric_indigo",
-                pathname === link.href ? "text-electric_indigo font-semibold" : "text-midnight_navy/80",
-                isScrolled || mobileMenuOpen ? "text-midnight_navy/80" : "text-midnight_navy", // Ensure visibility on transparent
+                "px-3 py-1 rounded-full text-sm font-medium transition-colors hover:bg-slate-200/50",
+                pathname === link.href
+                  ? `text-electric_indigo ${isScrolled ? "bg-electric_indigo/10" : ""}`
+                  : dynamicTextColor,
+                isScrolled ? "hover:text-electric_indigo" : "hover:text-electric_indigo",
               )}
             >
               {link.label}
@@ -66,23 +99,31 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Group 3: CTAs */}
+        <div
+          className={cn(
+            baseGroupStyle,
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full",
+            isScrolled ? scrolledGroupStyle : transparentGroupStyle,
+          )}
+        >
           <Link
             href="https://docs.drippay.xyz"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "text-sm font-medium text-midnight_navy/80 hover:text-electric_indigo transition-colors flex items-center group",
-              isScrolled || mobileMenuOpen ? "text-midnight_navy/80" : "text-midnight_navy",
+              "text-sm font-medium transition-colors flex items-center group px-2 py-1 rounded-md hover:bg-slate-200/50",
+              dynamicTextColor,
+              "hover:text-electric_indigo",
             )}
           >
             Docs
-            <ArrowUpRight className="ml-1 h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+            <ArrowUpRight className="ml-1 h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Button
             asChild
             size="sm"
-            className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold rounded-full px-5 py-2 text-sm shadow-md"
+            className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold rounded-full px-4 text-xs shadow-md h-8"
           >
             <Link href="/waitlist">Join Waitlist</Link>
           </Button>
@@ -94,12 +135,9 @@ export default function Header() {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={cn(
-              "hover:bg-slate-200/70",
-              isScrolled || mobileMenuOpen ? "text-midnight_navy" : "text-midnight_navy",
-            )}
+            className={cn("hover:bg-slate-200/70 rounded-full", dynamicTextColor)}
           >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
@@ -108,7 +146,7 @@ export default function Header() {
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-ghost_white shadow-lg pb-4 border-t border-slate-200/80">
-          <nav className="flex flex-col space-y-2 px-4 pt-3">
+          <nav className="flex flex-col space-y-1 px-4 pt-3">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -132,7 +170,7 @@ export default function Header() {
               Docs
               <ArrowUpRight className="ml-1 h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
-            <div className="border-t border-slate_gray/20 pt-3 mt-2">
+            <div className="border-t border-slate_gray/20 pt-3 mt-2 space-y-2">
               <Button
                 asChild
                 className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold"
@@ -141,8 +179,6 @@ export default function Header() {
                   Join Waitlist
                 </Link>
               </Button>
-            </div>
-            <div className="pt-1">
               <Button
                 variant="outline"
                 className="w-full border-slate-300 text-midnight_navy hover:bg-slate-100 hover:border-slate-400"
