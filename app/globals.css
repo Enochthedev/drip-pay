@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme Defaults based on DripPay Palette */
+    --background: 230 20% 98%; /* ghost_white #F9FAFC */
+    --foreground: 240 4% 18%; /* slate_gray #2E2E3A */
+
+    --card: 0 0% 100%; /* White for cards */
+    --card-foreground: 240 4% 18%; /* slate_gray */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 4% 18%;
+
+    --primary: 245 88% 61%; /* electric_indigo #5A48F2 */
+    --primary-foreground: 230 20% 98%; /* ghost_white */
+
+    --secondary: 172 100% 38%; /* drip_teal #00C2A8 */
+    --secondary-foreground: 230 20% 98%; /* ghost_white (for contrast on teal buttons) */
+    /* Or use --midnight_navy for text on light teal backgrounds: 224 71% 11% */
+
+    --muted: 220 13% 91%; /* Default shadcn muted light */
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 172 100% 38%; /* drip_teal for general accents */
+    --accent-foreground: 230 20% 98%;
+
+    --destructive: 0 100% 71%; /* soft_blush_coral #FF6B6B */
+    --destructive-foreground: 230 20% 98%;
+
+    --border: 220 13% 88%; /* Lighter border for light theme */
+    --input: 220 13% 91%; /* Lighter input for light theme */
+    --ring: 245 88% 61%; /* electric_indigo for focus rings */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Define dark theme variables if needed for ThemeProvider toggle */
+    --background: 224 71% 11%; /* midnight_navy */
+    --foreground: 230 20% 90%; /* Light gray for text on dark bg */
+
+    --card: 224 71% 15%;
+    --card-foreground: 230 20% 90%;
+
+    --popover: 224 71% 11%;
+    --popover-foreground: 230 20% 90%;
+
+    --primary: 245 88% 68%; /* Brighter Electric Indigo for dark */
+    --primary-foreground: 224 71% 11%;
+
+    --secondary: 172 100% 45%; /* Brighter Drip Teal for dark */
+    --secondary-foreground: 230 20% 98%;
+
+    --muted: 224 71% 20%;
+    --muted-foreground: 230 20% 60%;
+
+    --accent: 172 100% 45%;
+    --accent-foreground: 230 20% 98%;
+
+    --destructive: 0 100% 75%;
+    --destructive-foreground: 224 71% 11%;
+
+    --border: 224 71% 25%;
+    --input: 224 71% 25%;
+    --ring: 245 88% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans; /* Default to Inter */
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-grotesk text-balance; /* Space Grotesk for headings */
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
