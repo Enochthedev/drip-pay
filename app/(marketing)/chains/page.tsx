@@ -1,14 +1,14 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react" // Keep for Swell "Live" status
-import { Ethereum, Arbitrum, Optimism, Polygon, Base } from "@web3icons/react"
+import { Ethereum, ArbitrumOne, Optimism, Polygon, Base } from "@web3icons/react" // Changed Arbitrum to ArbitrumOne
 
 const chainData = [
   {
     name: "Swell Chain",
     status: "Live",
     icon: <CheckCircle className="h-10 w-10 text-green-500" />, // Using CheckCircle for live status
-    web3Icon: null, // No specific Swell icon in this library, placeholder
+    web3Icon: null,
     description:
       "DripPay is live and fully operational on Swell Chain, offering optimized performance for restaking-native payments and incentives.",
     detailsLink: "https://docs.drippay.xyz/chains/swell",
@@ -32,7 +32,7 @@ const chainData = [
     name: "Arbitrum",
     status: "Coming Soon",
     icon: null,
-    web3Icon: <Arbitrum className="h-10 w-10 text-sky-500" />,
+    web3Icon: <ArbitrumOne className="h-10 w-10 text-sky-500" />, // Changed to ArbitrumOne
     description:
       "Support for Arbitrum is planned, enabling fast and low-cost recurring payments on this leading Layer 2 scaling solution.",
     detailsLink: "https://docs.drippay.xyz/chains/arbitrum",
