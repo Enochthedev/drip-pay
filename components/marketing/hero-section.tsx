@@ -13,7 +13,6 @@ export default function HeroSection() {
               <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#heroGrid)" />
         </svg>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
