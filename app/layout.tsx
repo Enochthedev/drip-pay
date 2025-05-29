@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider" // Assuming you still want theme provider for dark mode if ever needed
 
 export const metadata: Metadata = {
   title: "DripPay - Automated Crypto Billing",
@@ -24,13 +24,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans">
-        {" "}
-        {/* Base font set in globals.css */}
+      <body className="font-sans text-slate_gray bg-ghost_white">
+        {/* ThemeProvider can be kept if you plan to support dark mode based on system preference or a toggle,
+          otherwise, if it's strictly light mode, you can remove it and its related files.
+          For now, I'll keep it as it doesn't hurt. */}
         <ThemeProvider
           attribute="class"
-          defaultTheme="light" // Explicitly light
-          enableSystem={false} // Can be true if you want system preference to override
+          defaultTheme="light" // Forcing light theme based on Ghost White background
+          enableSystem
           disableTransitionOnChange
         >
           {children}
