@@ -5,21 +5,28 @@ import Link from "next/link"
 
 export default function HeroSection() {
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-br from-ghost_white via-slate-50 to-electric_indigo/10 overflow-hidden">
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-electric_indigo/10 rounded-full opacity-50 animate-pulse" />
-      <div className="absolute -bottom-20 -right-10 w-96 h-96 bg-drip_teal/5 rounded-full opacity-60 animate-pulse animation-delay-2000" />
-
+    <section className="relative bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo overflow-hidden -mt-16 pt-36 pb-20 md:pt-48 md:pb-32">
+      <div className="absolute inset-0 opacity-[0.03] animate-pulse">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="heroGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#heroGrid)" />
+        </svg>
+      </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
             <div className="mb-6 md:mb-8 flex justify-center md:justify-start">
               <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={180} height={45} priority />
             </div>
-            <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-midnight_navy">
+            <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-ghost_white">
               <span className="block">Automated Crypto Billing.</span>
               <span className="block text-electric_indigo">Built for Restakers.</span>
             </h1>
-            <p className="font-sans text-lg md:text-xl text-slate_gray mb-8 max-w-xl mx-auto md:mx-0">
+            <p className="font-sans text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto md:mx-0">
               Start on Swell. Scale anywhere. DripPay brings seamless, smart contract-based subscriptions to the next
               generation of Web3 products.
             </p>
@@ -27,7 +34,7 @@ export default function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg px-8 py-3 shadow-lg hover:shadow-glow-indigo transform transition-all duration-300 hover:scale-105"
+                className="bg-electric_indigo hover:bg-opacity-85 text-ghost_white font-semibold text-lg px-8 py-3 shadow-[0_4px_14px_0_rgba(90,72,242,0.39)] hover:shadow-[0_6px_20px_0_rgba(90,72,242,0.23)] transform transition-all duration-300 hover:scale-105"
               >
                 <Link href="#launch">
                   Launch on Swell <Zap className="ml-2 h-5 w-5" />
@@ -37,7 +44,7 @@ export default function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-electric_indigo text-electric_indigo hover:bg-electric_indigo/10 hover:text-electric_indigo font-semibold text-lg px-8 py-3 shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-105"
+                className="border-electric_indigo text-electric_indigo hover:bg-electric_indigo hover:text-ghost_white font-semibold text-lg px-8 py-3 shadow-lg transform transition-all duration-300 hover:scale-105"
               >
                 <Link href="#how-it-works">
                   See How It Works <ArrowRight className="ml-2 h-5 w-5" />
@@ -46,14 +53,15 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="relative h-64 md:h-96">
+            {/* Visual: Animated flow from wallet → smart contract → recurring payments */}
             <Image
               src="/placeholder.svg?height=384&width=512"
               alt="Animated flow of crypto payments"
               layout="fill"
               objectFit="contain"
-              className="rounded-lg shadow-xl"
+              className="rounded-lg"
             />
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-electric_indigo/5 via-transparent to-drip_teal/5 opacity-70 group-hover:opacity-100 transition-opacity duration-300 animate-subtle-glow"></div>
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-electric_indigo/20 via-transparent to-drip_teal/20 opacity-50 group-hover:opacity-75 transition-opacity duration-300 animate-pulse"></div>
           </div>
         </div>
       </div>
