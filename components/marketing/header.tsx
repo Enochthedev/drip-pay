@@ -21,7 +21,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-midnight_navy text-ghost_white flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full bg-midnight_navy/90 backdrop-blur-md text-ghost_white flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 border-b border-slate_gray/20">
       <Link href="/" className="flex items-center gap-2 shrink-0">
         <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={120} height={30} priority />
       </Link>
