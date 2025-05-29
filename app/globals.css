@@ -14,35 +14,35 @@ body {
 
 @layer base {
   :root {
-    --background: 220 100% 97%; /* nex_light_blue approx HSL or ghost_white */
-    --foreground: 222 47% 11%; /* nex_deep_navy or slate_gray */
+    --background: 230 20% 98%; /* Ghost White approx HSL */
+    --foreground: 240 4% 18%; /* Slate Gray approx HSL */
 
-    --card: 0 0% 100%; /* White for cards */
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 240 4% 18%; /* Slate Gray */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 240 4% 18%;
 
-    --primary: 217 91% 60%; /* nex_primary_blue */
-    --primary-foreground: 0 0% 98%; /* nex_text_light */
+    --primary: 245 88% 61%; /* Electric Indigo */
+    --primary-foreground: 230 20% 98%; /* Ghost White */
 
-    --secondary: 215 59% 50%; /* nex_accent_blue */
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 172 100% 38%; /* Drip Teal */
+    --secondary-foreground: 224 71% 11%; /* Midnight Navy */
 
-    --muted: 220 14% 93%; /* nex_subtle_gray */
-    --muted-foreground: 220 9% 46%;
+    --muted: 220 13% 91%; /* Default shadcn muted */
+    --muted-foreground: 220 9% 46%; /* Default shadcn muted-foreground */
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 172 100% 38%; /* Drip Teal for accent */
+    --accent-foreground: 224 71% 11%; /* Midnight Navy */
 
-    --destructive: 0 84% 60%; /* A generic red, can map to soft_blush_coral */
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 100% 71%; /* Soft Blush Coral */
+    --destructive-foreground: 230 20% 98%; /* Ghost White */
 
-    --border: 220 13% 90%; /* nex_subtle_gray */
-    --input: 220 13% 90%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 85%; /* Lighter border for light theme */
+    --input: 220 13% 88%; /* Lighter input for light theme */
+    --ring: 245 88% 61%; /* Electric Indigo for ring */
 
-    --radius: 0.75rem; /* Slightly larger radius like Nexaris */
+    --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -54,34 +54,34 @@ body {
   }
 
   .dark {
-    /* Nexaris Inspired Dark Theme (primarily blue) */
-    --background: 222 47% 11%; /* nex_deep_navy */
-    --foreground: 210 40% 98%; /* nex_text_light */
+    /* Example dark theme variables, can be refined */
+    --background: 224 71% 11%; /* Midnight Navy */
+    --foreground: 230 20% 90%; /* Light gray for text on dark bg */
 
-    --card: 222 47% 15%; /* Slightly lighter navy for cards */
-    --card-foreground: 210 40% 98%;
+    --card: 224 71% 15%; /* Slightly lighter navy for cards */
+    --card-foreground: 230 20% 90%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 71% 11%;
+    --popover-foreground: 230 20% 90%;
 
-    --primary: 217 91% 60%; /* nex_primary_blue */
-    --primary-foreground: 210 40% 98%;
+    --primary: 245 88% 68%; /* Brighter Electric Indigo for dark */
+    --primary-foreground: 224 71% 11%; /* Midnight Navy */
 
-    --secondary: 215 59% 50%; /* nex_accent_blue */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 172 100% 45%; /* Brighter Drip Teal for dark */
+    --secondary-foreground: 230 20% 98%; /* Ghost White */
 
-    --muted: 222 47% 18%;
-    --muted-foreground: 220 10% 65%;
+    --muted: 224 71% 20%;
+    --muted-foreground: 230 20% 60%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 172 100% 45%;
+    --accent-foreground: 230 20% 98%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 75%; /* Brighter Coral for dark */
+    --destructive-foreground: 224 71% 11%;
 
-    --border: 222 47% 20%;
-    --input: 222 47% 20%;
-    --ring: 217 91% 60%;
+    --border: 224 71% 25%;
+    --input: 224 71% 25%;
+    --ring: 245 88% 68%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -98,9 +98,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
   }
   h1,
   h2,
@@ -108,6 +106,6 @@ body {
   h4,
   h5,
   h6 {
-    @apply font-grotesk text-balance;
+    @apply font-grotesk;
   }
 }
