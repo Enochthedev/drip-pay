@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function HeroSection() {
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo overflow-hidden">
+    <section className="relative bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo overflow-hidden -mt-16 pt-36 pb-20 md:pt-48 md:pb-32">
       <div className="absolute inset-0 opacity-[0.03] animate-pulse">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -13,6 +13,7 @@ export default function HeroSection() {
               <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
             </pattern>
           </defs>
+          <rect width="100%" height="100%" fill="url(#heroGrid)" />
         </svg>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
