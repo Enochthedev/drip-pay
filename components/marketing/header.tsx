@@ -21,55 +21,53 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-midnight_navy text-ghost_white">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={120} height={30} priority />
-        </Link>
+    <header className="sticky top-0 z-50 w-full bg-midnight_navy text-ghost_white flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <Link href="/" className="flex items-center gap-2 shrink-0">
+        <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={120} height={30} priority />
+      </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-center flex-grow">
-          <div className="flex items-center space-x-2 bg-slate_gray/20 p-1 rounded-full">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-slate_gray/30",
-                  pathname === link.href
-                    ? "bg-electric_indigo text-ghost_white"
-                    : "text-slate-300 hover:text-ghost_white",
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-
-        <div className="hidden md:flex items-center space-x-3 shrink-0">
-          <Button variant="ghost" className="text-slate-300 hover:text-ghost_white hover:bg-slate_gray/20" asChild>
-            <Link href="/dashboard">Dashboard</Link>
-          </Button>
-          <Button className="bg-ghost_white hover:bg-slate-200 text-midnight_navy font-semibold rounded-full" asChild>
-            <Link href="/waitlist">Join Waitlist</Link>
-          </Button>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center justify-center flex-grow">
+        <div className="flex items-center space-x-2 bg-slate_gray/20 p-1 rounded-full">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-slate_gray/30",
+                pathname === link.href
+                  ? "bg-electric_indigo text-ghost_white"
+                  : "text-slate-300 hover:text-ghost_white",
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
+      </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-ghost_white hover:bg-slate_gray/20"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-        </div>
+      <div className="hidden md:flex items-center space-x-3 shrink-0">
+        <Button variant="ghost" className="text-slate-300 hover:text-ghost_white hover:bg-slate_gray/20" asChild>
+          <Link href="/dashboard">Dashboard</Link>
+        </Button>
+        <Button className="bg-ghost_white hover:bg-slate-200 text-midnight_navy font-semibold rounded-full" asChild>
+          <Link href="/waitlist">Join Waitlist</Link>
+        </Button>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="text-ghost_white hover:bg-slate_gray/20"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <span className="sr-only">Toggle menu</span>
+        </Button>
       </div>
 
       {/* Mobile Navigation Menu */}
