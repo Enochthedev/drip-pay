@@ -1,12 +1,14 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, Construction, ListTree, Hexagon, Copy, Shield } from "lucide-react"
+import { CheckCircle } from "lucide-react" // Keep for Swell "Live" status
+import { Ethereum, Arbitrum, Optimism, Polygon, Base } from "@web3icons/react"
 
 const chainData = [
   {
     name: "Swell Chain",
     status: "Live",
-    icon: <CheckCircle className="h-10 w-10 text-green-500" />,
+    icon: <CheckCircle className="h-10 w-10 text-green-500" />, // Using CheckCircle for live status
+    web3Icon: null, // No specific Swell icon in this library, placeholder
     description:
       "DripPay is live and fully operational on Swell Chain, offering optimized performance for restaking-native payments and incentives.",
     detailsLink: "https://docs.drippay.xyz/chains/swell",
@@ -17,7 +19,8 @@ const chainData = [
   {
     name: "Ethereum",
     status: "Coming Soon",
-    icon: <Hexagon className="h-10 w-10 text-blue-500" />,
+    icon: null,
+    web3Icon: <Ethereum className="h-10 w-10 text-blue-500" />,
     description:
       "Integration with Ethereum Mainnet is under active development to bring DripPay's decentralized billing to the largest smart contract ecosystem.",
     detailsLink: "https://docs.drippay.xyz/chains/ethereum",
@@ -28,7 +31,8 @@ const chainData = [
   {
     name: "Arbitrum",
     status: "Coming Soon",
-    icon: <Copy className="h-10 w-10 text-sky-500" />,
+    icon: null,
+    web3Icon: <Arbitrum className="h-10 w-10 text-sky-500" />,
     description:
       "Support for Arbitrum is planned, enabling fast and low-cost recurring payments on this leading Layer 2 scaling solution.",
     detailsLink: "https://docs.drippay.xyz/chains/arbitrum",
@@ -39,7 +43,8 @@ const chainData = [
   {
     name: "Optimism",
     status: "Next",
-    icon: <Shield className="h-10 w-10 text-red-500" />,
+    icon: null,
+    web3Icon: <Optimism className="h-10 w-10 text-red-500" />,
     description:
       "Optimism integration is on our roadmap, extending DripPay's capabilities to another key Ethereum Layer 2 network.",
     detailsLink: "https://docs.drippay.xyz/chains/optimism",
@@ -50,7 +55,8 @@ const chainData = [
   {
     name: "Polygon",
     status: "Next",
-    icon: <ListTree className="h-10 w-10 text-purple-500" />,
+    icon: null,
+    web3Icon: <Polygon className="h-10 w-10 text-purple-500" />,
     description:
       "We are exploring Polygon integration to provide DripPay users with access to its vibrant ecosystem and scalable infrastructure.",
     detailsLink: "https://docs.drippay.xyz/chains/polygon",
@@ -61,7 +67,8 @@ const chainData = [
   {
     name: "Base",
     status: "Next",
-    icon: <Construction className="h-10 w-10 text-blue-600" />,
+    icon: null,
+    web3Icon: <Base className="h-10 w-10 text-blue-600" />,
     description:
       "Base integration is being considered to tap into its growing developer community and Coinbase ecosystem.",
     detailsLink: "https://docs.drippay.xyz/chains/base",
@@ -89,7 +96,7 @@ export default function SupportedChainsPage() {
                 className={`p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ${chain.bgColor}`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2 rounded-md bg-white/50`}>{chain.icon}</div>
+                  <div className={`p-2 rounded-md bg-white/50`}>{chain.web3Icon || chain.icon}</div>
                   <div>
                     <CardTitle className={`text-2xl font-bold font-grotesk text-${chain.color}`}>
                       {chain.name}
