@@ -30,18 +30,15 @@ export default function Header() {
   }, [])
 
   const baseGroupStyle = "transition-all duration-300 ease-in-out flex items-center"
-  // Group styles when header has its own light background (scrolled)
   const scrolledGroupStyle = "bg-white/70 backdrop-blur-md shadow-sm border border-slate-200/60"
-  // Group styles when header is transparent (at the top)
   const transparentGroupStyle = "bg-transparent shadow-none border border-transparent"
 
-  // Text colors
-  const scrolledTextColor = "text-midnight_navy" // For dark text on light header bg
-  const transparentTextColor = "text-slate-200" // For light text on transparent header (over dark hero)
+  const scrolledTextColor = "text-midnight_navy"
+  const transparentTextColor = "text-slate-200"
   const transparentLogoTextColor = "text-ghost_white"
 
-  const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50" // Active link on transparent header
-  const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10" // Active link on scrolled header
+  const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50"
+  const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10"
 
   return (
     <header
@@ -51,7 +48,6 @@ export default function Header() {
       )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Group 1: Logo + Name */}
         <Link
           href="/"
           className={cn(
@@ -64,9 +60,8 @@ export default function Header() {
             src="/images/drippay-logo.png"
             alt="DripPay Logo"
             width={28}
-            height={28}
-            priority
-            /* No filter needed if logo is designed to be visible on dark/light */
+            height={28}\
+            priority={true} {/* No filter needed if logo is designed to be visible on dark/light */}
           />
           <span
             className={cn(
@@ -78,7 +73,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Group 2: Desktop Navigation */}
         <nav
           className={cn(
             baseGroupStyle,
@@ -103,11 +97,10 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Group 3: CTAs */}
         <div
           className={cn(
             baseGroupStyle,
-            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center" /* Added items-center */,
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center", /* Added items-center */
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
@@ -134,7 +127,6 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -144,7 +136,7 @@ export default function Header() {
               "hover:bg-slate-200/70 rounded-full",
               isScrolled || mobileMenuOpen
                 ? scrolledTextColor
-                : transparentLogoTextColor /* Use logo text color for consistency */,
+                : transparentLogoTextColor, /* Use logo text color for consistency */
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -153,7 +145,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu (uses light background when open) */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-ghost_white shadow-lg pb-4 border-t border-slate-200/80">
           <nav className="flex flex-col space-y-1 px-4 pt-3">
