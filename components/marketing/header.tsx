@@ -5,8 +5,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X, ArrowUpRight } from "lucide-react"
+import { Menu, X, ArrowUpRight, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
 const navLinks = [
   { href: "/features", label: "Features" },
@@ -19,6 +20,18 @@ export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +52,44 @@ export default function Header() {
 
   const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50"
   const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10"
+
+  // Animation variants for mobile menu
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: "-100%",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        when: "afterChildren",
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    closed: { opacity: 0, y: -20 },
+    open: { opacity: 1, y: 0 },
+  }
+
+  const buttonVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0 },
+  }
 
   return (
     <header
@@ -127,8 +178,8 @@ export default function Header() {
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={cn(
-              "hover:bg-slate-200/70 rounded-full",
-              isScrolled || mobileMenuOpen ? scrolledTextColor : transparentLogoTextColor,
+              "hover:bg-slate-200/70 rounded-full z-50 relative",
+              mobileMenuOpen ? "text-ghost_white" : isScrolled ? scrolledTextColor : transparentLogoTextColor,
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -137,54 +188,107 @@ export default function Header() {
         </div>
       </div>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-ghost_white shadow-lg pb-4 border-t border-slate-200/80">
-          <nav className="flex flex-col space-y-1 px-4 pt-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={cn(
-                  "block rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-slate-100",
-                  pathname === link.href ? "text-electric_indigo font-semibold" : "text-midnight_navy",
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="https://docs.drippay.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block rounded-md px-3 py-2 text-base font-medium text-midnight_navy hover:bg-slate-100 flex items-center group"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Docs
-              <ArrowUpRight className="ml-1 h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-            </Link>
-            <div className="border-t border-slate_gray/20 pt-3 mt-2 space-y-2">
-              <Button
-                asChild
-                className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold"
-              >
-                <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                  Join Waitlist
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full border-slate-300 text-midnight_navy hover:bg-slate-100 hover:border-slate-400"
-                asChild
-              >
-                <Link href="/dashboard" scroll={false} onClick={() => setMobileMenuOpen(false)}>
-                  Dashboard
-                </Link>
-              </Button>
+      {/* New Mobile Menu Design */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="fixed inset-0 bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo z-40 flex flex-col"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+          >
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-[0.03]">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="mobileMenuGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#mobileMenuGrid)" />
+              </svg>
             </div>
-          </nav>
-        </div>
-      )}
+
+            <div className="container mx-auto px-6 py-16 flex flex-col h-full">
+              {/* Logo */}
+              <motion.div className="mb-12 flex justify-center" variants={itemVariants}>
+                <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={140} height={35} priority />
+              </motion.div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col items-center space-y-6 mb-auto">
+                {navLinks.map((link) => (
+                  <motion.div key={link.label} variants={itemVariants}>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center",
+                        pathname === link.href && "text-electric_indigo",
+                      )}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                      <ChevronRight
+                        className={cn(
+                          "ml-1 h-5 w-5 transition-transform",
+                          pathname === link.href ? "opacity-100" : "opacity-0",
+                        )}
+                      />
+                    </Link>
+                  </motion.div>
+                ))}
+
+                <motion.div variants={itemVariants}>
+                  <Link
+                    href="https://docs.drippay.xyz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Docs
+                    <ArrowUpRight className="ml-1 h-5 w-5 opacity-70" />
+                  </Link>
+                </motion.div>
+              </nav>
+
+              {/* CTA Buttons */}
+              <div className="mt-12 space-y-4">
+                <motion.div variants={buttonVariants}>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg py-6"
+                  >
+                    <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                      Join Waitlist
+                    </Link>
+                  </Button>
+                </motion.div>
+
+                <motion.div variants={buttonVariants}>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="w-full border-ghost_white/30 text-ghost_white hover:bg-ghost_white/10 font-semibold text-lg py-6"
+                  >
+                    <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                      Dashboard
+                    </Link>
+                  </Button>
+                </motion.div>
+              </div>
+
+              {/* Footer */}
+              <motion.div className="mt-8 text-center text-sm text-ghost_white/60" variants={buttonVariants}>
+                &copy; {new Date().getFullYear()} DripPay
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
