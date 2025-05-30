@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
 
 export default function HeroSection() {
   // Header height is 4rem (64px). We'll use 65px for a slight overdraw.
@@ -18,19 +17,6 @@ export default function HeroSection() {
 
   const newPtPx = originalPtPx + headerHeightPx
   const newMdPtPx = originalMdPtPx + headerHeightPx
-
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (custom: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: custom * 0.1,
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    }),
-  }
 
   return (
     <section
@@ -60,48 +46,31 @@ export default function HeroSection() {
         </svg>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="text-center md:text-left">
-            <motion.div
-              className="mb-6 md:mb-8 flex justify-center md:justify-start"
-              initial="hidden"
-              animate="visible"
-              custom={0}
-              variants={fadeInUpVariants}
-            >
-              <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={180} height={45} priority />
-            </motion.div>
-            <motion.h1
-              className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-ghost_white"
-              initial="hidden"
-              animate="visible"
-              custom={1}
-              variants={fadeInUpVariants}
-            >
+            <div className="mb-6 md:mb-8 flex justify-center md:justify-start">
+              <Image
+                src="/images/drippay-logo.png"
+                alt="DripPay Logo"
+                width={180}
+                height={45}
+                priority
+                className="max-w-[160px] md:max-w-[180px] w-auto h-auto"
+              />
+            </div>
+            <h1 className="font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-ghost_white">
               <span className="block">Automated Crypto Billing.</span>
               <span className="block text-electric_indigo">Built for Restakers.</span>
-            </motion.h1>
-            <motion.p
-              className="font-sans text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto md:mx-0"
-              initial="hidden"
-              animate="visible"
-              custom={2}
-              variants={fadeInUpVariants}
-            >
+            </h1>
+            <p className="font-sans text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto md:mx-0">
               Start on Swell. Scale anywhere. DripPay brings seamless, smart contract-based subscriptions to the next
               generation of Web3 products.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
-              initial="hidden"
-              animate="visible"
-              custom={3}
-              variants={fadeInUpVariants}
-            >
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
                 asChild
                 size="lg"
-                className="bg-electric_indigo hover:bg-opacity-85 text-ghost_white font-semibold text-lg px-8 py-3 shadow-[0_4px_14px_0_rgba(90,72,242,0.39)] hover:shadow-[0_6px_20px_0_rgba(90,72,242,0.23)] transform transition-all duration-300 hover:scale-105"
+                className="w-full sm:w-auto bg-electric_indigo hover:bg-opacity-85 text-ghost_white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 shadow-[0_4px_14px_0_rgba(90,72,242,0.39)] hover:shadow-[0_6px_20px_0_rgba(90,72,242,0.23)] transform transition-all duration-300 hover:scale-105"
               >
                 <Link href="#launch">
                   Launch on Swell <Zap className="ml-2 h-5 w-5" />
@@ -111,20 +80,15 @@ export default function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-electric_indigo text-electric_indigo hover:bg-electric_indigo hover:text-ghost_white font-semibold text-lg px-8 py-3 shadow-lg transform transition-all duration-300 hover:scale-105"
+                className="w-full sm:w-auto border-electric_indigo text-electric_indigo hover:bg-electric_indigo hover:text-ghost_white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 shadow-lg transform transition-all duration-300 hover:scale-105"
               >
                 <Link href="#how-it-works">
                   See How It Works <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-            </motion.div>
+            </div>
           </div>
-          <motion.div
-            className="relative h-64 md:h-96"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-          >
+          <div className="relative h-56 sm:h-64 md:h-96 mt-4 md:mt-0">
             {/* Visual: Animated flow from wallet → smart contract → recurring payments */}
             <Image
               src="/placeholder.svg?height=384&width=512"
@@ -134,7 +98,7 @@ export default function HeroSection() {
               className="rounded-lg"
             />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-electric_indigo/20 via-transparent to-drip_teal/20 opacity-50 group-hover:opacity-75 transition-opacity duration-300 animate-pulse"></div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
