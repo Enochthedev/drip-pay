@@ -27,9 +27,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans text-slate_gray bg-ghost_white">
-        {/* ThemeProvider can be kept if you plan to support dark mode based on system preference or a toggle,
-          otherwise, if it's strictly light mode, you can remove it and its related files.
-          For now, I'll keep it as it doesn't hurt. */}
+        {/* 
+  ThemeProvider can be kept if you plan to support dark mode based on system preference or a toggle,
+  otherwise, if it's strictly light mode, you can remove it and its related files.
+  For now, I'll keep it as it doesn't hurt. 
+*/}
         <ThemeProvider
           attribute="class"
           defaultTheme="light" // Forcing light theme based on Ghost White background
