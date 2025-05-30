@@ -18,23 +18,29 @@ const socialLinks = [
 export default function FooterSection() {
   return (
     <footer className="bg-midnight_navy border-t border-slate-700">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
           <div className="flex flex-col items-center md:items-start">
             <Link href="/" className="mb-2">
-              <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={150} height={37.5} />
+              <Image
+                src="/images/drippay-logo.png"
+                alt="DripPay Logo"
+                width={150}
+                height={37.5}
+                className="max-w-[120px] sm:max-w-[150px] w-auto h-auto"
+              />
             </Link>
             <span className="text-xs bg-electric_indigo/20 text-electric_indigo px-3 py-1 rounded-full font-medium">
               Launching on Swell
             </span>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:col-span-1">
+          <nav className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-2 md:col-span-1">
             {footerLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-slate-300 hover:text-drip_teal transition-colors font-sans"
+                className="text-slate-300 hover:text-drip_teal transition-colors font-sans text-sm sm:text-base"
               >
                 {link.name}
               </Link>
@@ -56,7 +62,7 @@ export default function FooterSection() {
             ))}
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-slate-700 text-center text-sm text-slate-400 font-sans">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400 font-sans">
           <p>&copy; {new Date().getFullYear()} DripPay. All rights reserved. Powering decentralized subscriptions.</p>
         </div>
       </div>
