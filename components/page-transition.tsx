@@ -147,7 +147,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
               />
             ))}
 
-            {/* DripPay logo during transition */}
+            {/* DripPay logo during transition with ripples */}
             <motion.div
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               initial={{ scale: 0, opacity: 0 }}
@@ -159,19 +159,46 @@ export default function PageTransition({ children }: PageTransitionProps) {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <div className="text-ghost_white font-grotesk font-bold text-2xl md:text-3xl flex items-center">
-                <motion.div
-                  className="w-8 h-8 md:w-10 md:h-10 bg-ghost_white rounded-full mr-3"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                />
-                DripPay
+              <div className="relative">
+                {/* Logo ripples */}
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute border-2 border-ghost_white/30 rounded-full"
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
+                    }}
+                    animate={{
+                      width: ["0px", "120px", "180px"],
+                      height: ["0px", "120px", "180px"],
+                      opacity: [0.8, 0.3, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: i * 0.4,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+
+                {/* Logo container */}
+                <div className="relative z-10 text-ghost_white font-grotesk font-bold text-2xl md:text-3xl flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                  <motion.div
+                    className="w-8 h-8 md:w-10 md:h-10 bg-ghost_white rounded-full mr-3"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  DripPay
+                </div>
               </div>
             </motion.div>
           </motion.div>
