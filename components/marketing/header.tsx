@@ -60,8 +60,8 @@ export default function Header() {
             src="/images/drippay-logo.png"
             alt="DripPay Logo"
             width={28}
-            height={28}\
-            priority={true} {/* No filter needed if logo is designed to be visible on dark/light */}
+            height={28} // Corrected: Removed stray backslash
+            priority // Simplified boolean prop, comment moved or removed for clarity during fix
           />
           <span
             className={cn(
@@ -100,7 +100,7 @@ export default function Header() {
         <div
           className={cn(
             baseGroupStyle,
-            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center", /* Added items-center */
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center" /* Added items-center */,
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
@@ -136,7 +136,7 @@ export default function Header() {
               "hover:bg-slate-200/70 rounded-full",
               isScrolled || mobileMenuOpen
                 ? scrolledTextColor
-                : transparentLogoTextColor, /* Use logo text color for consistency */
+                : transparentLogoTextColor /* Use logo text color for consistency */,
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
