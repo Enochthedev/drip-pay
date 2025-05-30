@@ -47,7 +47,7 @@ export default function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out py-2",
-        "bg-transparent border-b border-transparent", // Always transparent, no shadow or backdrop on the header bar itself
+        "bg-transparent border-b border-transparent" /* Always transparent, no shadow or backdrop on the header bar itself */,
       )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -66,7 +66,7 @@ export default function Header() {
             width={28}
             height={28}
             priority
-            // No filter needed if logo is designed to be visible on dark/light
+            /* No filter needed if logo is designed to be visible on dark/light */
           />
           <span
             className={cn(
@@ -107,7 +107,7 @@ export default function Header() {
         <div
           className={cn(
             baseGroupStyle,
-            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center", // Added items-center
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center" /* Added items-center */,
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
@@ -142,7 +142,9 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={cn(
               "hover:bg-slate-200/70 rounded-full",
-              isScrolled || mobileMenuOpen ? scrolledTextColor : transparentLogoTextColor, // Use logo text color for consistency
+              isScrolled || mobileMenuOpen
+                ? scrolledTextColor
+                : transparentLogoTextColor /* Use logo text color for consistency */,
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
