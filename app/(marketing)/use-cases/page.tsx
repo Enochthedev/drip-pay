@@ -1,5 +1,8 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, Package, Briefcase, Edit3, BarChartHorizontalBig, ShoppingBag } from "lucide-react"
+import UseCasesHero from "./components/use-cases-hero"
+import CategoryGridSection from "./components/category-grid-section"
+import CaseStudySpotlight from "./components/case-study-spotlight"
+import UseCasesCTA from "./components/use-cases-cta"
 
 const useCases = [
   {
@@ -48,45 +51,11 @@ const useCases = [
 
 export default function UseCasesPage() {
   return (
-    <div className="py-16 md:py-24 bg-slate-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-midnight_navy mb-4">
-            Powering the Next Wave of Web3 Applications
-          </h1>
-          <p className="text-lg md:text-xl text-slate_gray max-w-3xl mx-auto">
-            DripPay's flexible on-chain billing protocol enables a wide range of innovative use cases across the
-            decentralized web.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {useCases.map((useCase) => (
-            <Card
-              key={useCase.title}
-              className="bg-white border-slate-200 shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
-            >
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-3 rounded-lg bg-electric_indigo/10">{useCase.icon}</div>
-                  <CardTitle className="text-xl font-semibold text-midnight_navy font-grotesk">
-                    {useCase.title}
-                  </CardTitle>
-                </div>
-                <CardDescription className="text-slate_gray/90">{useCase.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow mt-auto">
-                <p className="text-sm font-medium text-electric_indigo mb-1">Examples:</p>
-                <ul className="space-y-1 text-sm text-slate_gray/80 list-disc list-inside">
-                  {useCase.examples.map((example) => (
-                    <li key={example}>{example}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <UseCasesHero />
+      <CategoryGridSection />
+      <CaseStudySpotlight />
+      <UseCasesCTA />
     </div>
   )
 }

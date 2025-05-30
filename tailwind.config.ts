@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: ["class"],
+  darkMode: ["class"], // Can be 'media' or 'class'
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -20,56 +20,46 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))", // Keep existing shadcn/ui variables
+        border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))", // This will be overridden by Ghost White for the page
-        foreground: "hsl(var(--foreground))", // This will be overridden by Slate Gray
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          // shadcn/ui primary, can be mapped to Electric Indigo
-          DEFAULT: "#5A48F2", // Electric Indigo
-          foreground: "#F9FAFC", // Ghost White
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          // shadcn/ui secondary
-          DEFAULT: "#00C2A8", // Drip Teal
-          foreground: "#0A0F2C", // Midnight Navy
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "#FF6B6B", // Soft Blush Coral
-          foreground: "#F9FAFC", // Ghost White
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          // shadcn/ui accent, can be mapped to Drip Teal or Electric Indigo
-          DEFAULT: "#00C2A8", // Drip Teal
-          foreground: "#0A0F2C", // Midnight Navy
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          // shadcn/ui card
-          DEFAULT: "#FFFFFF", // Pure white for cards on Ghost White bg, or a very light gray
-          foreground: "#2E2E3A", // Slate Gray
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
-        // DripPay Brand Colors
+        // DripPay Brand Colors (direct values for easier use)
         midnight_navy: "#0A0F2C",
         electric_indigo: "#5A48F2",
         drip_teal: "#00C2A8",
         soft_blush_coral: "#FF6B6B",
         ghost_white: "#F9FAFC",
-        slate_gray: "#2E2E3A",
-        // Swell specific colors (can be phased out or kept for specific Swell sections)
-        swell_purple: {
-          light: "#A855F7",
-          DEFAULT: "#7C3AED",
-          dark: "#6B21A8",
-        },
+        slate_gray: "#2E2E3A", // For text on light backgrounds
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
@@ -77,26 +67,38 @@ const config = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
         },
         "gradient-flow": {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" },
         },
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 0.3s ease-out",
+        "accordion-up": "accordion-up 0.3s ease-out",
         "gradient-flow": "gradient-flow 15s ease infinite",
+        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
       },
       backgroundImage: {
         "hero-gradient": "linear-gradient(270deg, hsl(var(--background)) 20%, var(--tw-gradient-stops))",
+        "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
       },
     },
   },
