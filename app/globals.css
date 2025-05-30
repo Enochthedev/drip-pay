@@ -4,6 +4,7 @@
 
 body {
   font-family: "Inter", sans-serif; /* Changed default body font */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 @layer utilities {
@@ -77,5 +78,18 @@ body {
   h5,
   h6 {
     @apply font-grotesk;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  pre {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
