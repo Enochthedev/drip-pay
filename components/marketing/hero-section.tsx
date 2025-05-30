@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import OceanBackground from "@/components/ocean-background"
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -53,6 +54,9 @@ export default function HeroSection() {
         }
       `}</style>
 
+      {/* Ocean background with droplets */}
+      <OceanBackground intensity="medium" />
+
       {/* Animated flowing background */}
       <div className="absolute inset-0 opacity-30">
         <div
@@ -65,26 +69,30 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Drip particles */}
+      {/* Enhanced drip particles with ocean theme */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-drip_teal/20 rounded-full"
+            className="absolute rounded-full bg-drip_teal/20 backdrop-blur-sm"
+            style={{
+              width: `${Math.random() * 12 + 8}px`,
+              height: `${Math.random() * 12 + 8}px`,
+            }}
             initial={{
-              x: Math.random() * window.innerWidth,
+              x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
               y: -20,
               scale: 0,
             }}
             animate={{
-              y: window.innerHeight + 20,
-              scale: [0, 1, 0],
-              opacity: [0, 0.6, 0],
+              y: (typeof window !== "undefined" ? window.innerHeight : 800) + 20,
+              scale: [0, 1, 0.8, 0],
+              opacity: [0, 0.8, 0.4, 0],
             }}
             transition={{
-              duration: Math.random() * 3 + 4,
+              duration: Math.random() * 4 + 6,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 5,
+              delay: Math.random() * 8,
               ease: "easeInOut",
             }}
           />
@@ -141,8 +149,19 @@ export default function HeroSection() {
                   priority
                   className="max-w-[160px] md:max-w-[180px] w-auto h-auto"
                 />
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-electric_indigo/20 blur-xl rounded-full animate-pulse" />
+                {/* Enhanced glow effect with droplet animation */}
+                <motion.div
+                  className="absolute inset-0 bg-electric_indigo/20 blur-xl rounded-full"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
               </div>
             </motion.div>
 
@@ -160,13 +179,33 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 Built for Restakers.
-                {/* Drip effect under text */}
+                {/* Enhanced drip effect under text */}
                 <motion.div
                   className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-electric_indigo via-drip_teal to-electric_indigo rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
                 />
+                {/* Droplet effects on the line */}
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute -bottom-1 w-2 h-2 bg-drip_teal rounded-full"
+                    style={{ left: `${20 + i * 30}%` }}
+                    initial={{ scale: 0, y: 0 }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      y: [0, 10, 20],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: 2 + i * 0.3,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
               </motion.span>
             </motion.h1>
 
@@ -196,7 +235,7 @@ export default function HeroSection() {
                     <span className="relative z-10 flex items-center">
                       Launch on Swell <Zap className="ml-2 h-5 w-5" />
                     </span>
-                    {/* Liquid hover effect */}
+                    {/* Enhanced liquid hover effect */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-drip_teal to-electric_indigo opacity-0 group-hover:opacity-100"
                       initial={{ x: "-100%" }}
@@ -228,12 +267,13 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Morphing blob background */}
+            {/* Enhanced morphing blob background with ocean theme */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-electric_indigo/30 to-drip_teal/30 rounded-full blur-3xl"
+              className="absolute inset-0 bg-gradient-to-br from-electric_indigo/30 to-drip_teal/30 blur-3xl"
               animate={{
                 scale: [1, 1.1, 1],
                 rotate: [0, 180, 360],
+                borderRadius: ["50%", "60% 40% 30% 70%", "50%"],
               }}
               transition={{
                 duration: 20,
@@ -252,7 +292,7 @@ export default function HeroSection() {
                 className="rounded-lg"
               />
               <motion.div
-                className="absolute inset-0 rounded-lg bg-gradient-to-tr from-electric_indigo/20 via-transparent to-drip_teal/20 opacity-50"
+                className="absolute inset-0 rounded-lg bg-gradient-to-tr from-electric_indigo/20 via-transparent to-drip_teal/20"
                 animate={{
                   opacity: [0.3, 0.7, 0.3],
                 }}
@@ -264,18 +304,21 @@ export default function HeroSection() {
               />
             </motion.div>
 
-            {/* Floating elements */}
-            {[...Array(6)].map((_, i) => (
+            {/* Enhanced floating elements with droplet theme */}
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-3 h-3 bg-drip_teal/40 rounded-full"
+                className="absolute rounded-full bg-drip_teal/40 backdrop-blur-sm"
                 style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${30 + (i % 2) * 40}%`,
+                  width: `${Math.random() * 8 + 6}px`,
+                  height: `${Math.random() * 8 + 6}px`,
+                  left: `${20 + i * 10}%`,
+                  top: `${30 + (i % 3) * 20}%`,
                 }}
                 animate={{
-                  y: [-10, 10, -10],
+                  y: [-15, 15, -15],
                   opacity: [0.4, 0.8, 0.4],
+                  scale: [1, 1.2, 1],
                 }}
                 transition={{
                   duration: 3 + i * 0.5,
