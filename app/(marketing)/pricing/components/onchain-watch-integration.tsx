@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { onchainWatchFeaturesList } from "../data/pricing-data.tsx"
+import { onchainWatchFeaturesList } from "../data/pricing-data"
 
 export default function OnchainWatchIntegration() {
   return (
