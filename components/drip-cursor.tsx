@@ -91,3 +91,4 @@ export default function DripCursor() {
     </>
   )
 }
+// This file should be kept but not used anywhere in the application
