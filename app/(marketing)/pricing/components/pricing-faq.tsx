@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { faqData } from "../data/pricing-data"
+import { faqData } from "../data/pricing-data.tsx"
 import { HelpCircle } from "lucide-react"
 
 export default function PricingFaq() {

@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { addOnsData } from "../data/pricing-data"
+import { addOnsData } from "../data/pricing-data.tsx"
 import { PlusCircle } from "lucide-react"
 
 export default function PricingAddOns() {
