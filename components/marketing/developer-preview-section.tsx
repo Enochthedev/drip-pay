@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { Code, ExternalLink } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 const smartContractSnippet = `
@@ -63,14 +62,44 @@ export default function DeveloperPreviewSection() {
             </pre>
           </div>
           <div className="flex flex-col items-center">
-            <div className="relative w-full max-w-lg h-48 sm:h-64 md:h-80 mb-6">
-              <Image
-                src="/placeholder.svg?height=320&width=512"
-                alt="Mock DripPay Dashboard or CLI Interface"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg shadow-2xl border border-slate-200"
-              />
+            <div className="relative w-full max-w-lg h-48 sm:h-64 md:h-80 mb-6 bg-slate-900 rounded-lg border border-slate-700 overflow-hidden">
+              {/* Terminal/CLI Interface Mockup */}
+              <div className="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center space-x-2">
+                <div className="flex space-x-1">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span className="text-slate-400 text-sm font-mono">drippay-cli</span>
+              </div>
+
+              <div className="p-4 font-mono text-sm space-y-2">
+                <div className="text-drip_teal">$ drippay init my-subscription-app</div>
+                <div className="text-slate-400">✓ Creating smart contract templates...</div>
+                <div className="text-slate-400">✓ Setting up Swell L2 configuration...</div>
+                <div className="text-slate-400">✓ Installing dependencies...</div>
+
+                <div className="mt-4 text-drip_teal">$ drippay deploy --network swell</div>
+                <div className="text-slate-400">📦 Deploying to Swell L2...</div>
+                <div className="text-electric_indigo">🎉 Contract deployed: 0x742d35Cc6634C0532925a3b8D</div>
+
+                <div className="mt-4 text-drip_teal">$ drippay create-plan --amount 0.05 --interval monthly</div>
+                <div className="text-slate-400">✓ Subscription plan created</div>
+                <div className="text-slate-400">Plan ID: plan_abc123</div>
+
+                <div className="mt-2 flex items-center">
+                  <span className="text-drip_teal">$</span>
+                  <div className="ml-2 w-2 h-4 bg-drip_teal animate-pulse"></div>
+                </div>
+              </div>
+
+              {/* Floating code snippets */}
+              <div className="absolute top-4 right-4 bg-electric_indigo/10 backdrop-blur-sm rounded px-2 py-1 text-xs text-electric_indigo border border-electric_indigo/20">
+                Smart Contract
+              </div>
+              <div className="absolute bottom-4 left-4 bg-drip_teal/10 backdrop-blur-sm rounded px-2 py-1 text-xs text-drip_teal border border-drip_teal/20">
+                Swell L2
+              </div>
             </div>
             <Button
               asChild
