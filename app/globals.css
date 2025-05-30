@@ -5,7 +5,7 @@
 body {
   font-family: "Inter", sans-serif; /* Changed default body font */
   overflow-x: hidden; /* Prevent horizontal scrolling */
-  cursor: none; /* Hide default cursor for custom drip cursor */
+  cursor: auto; /* Changed from cursor: none */
 }
 
 @layer utilities {
@@ -244,10 +244,6 @@ body {
 
 /* Mobile-specific adjustments */
 @media (max-width: 640px) {
-  body {
-    cursor: auto; /* Show default cursor on mobile */
-  }
-
   pre {
     font-size: 12px;
     line-height: 1.4;
