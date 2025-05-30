@@ -9,7 +9,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       delayChildren: 0.2,
     },
   },
@@ -36,16 +36,28 @@ const cardVariants = {
 
 export default function CoreFeaturesSection() {
   return (
-    <section className="py-16 md:py-24 bg-ghost_white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-24 bg-ghost_white relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="featuresGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(90, 72, 242, 0.3)" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#featuresGrid)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-midnight_navy font-grotesk">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight_navy font-grotesk mb-4">
             What Makes{" "}
             <span className="text-electric_indigo relative">
               DripPay
@@ -59,7 +71,12 @@ export default function CoreFeaturesSection() {
             </span>{" "}
             Different?
           </h2>
+          <p className="text-lg text-slate_gray max-w-2xl mx-auto">
+            Built from the ground up for Web3, DripPay offers features that traditional billing systems simply can't
+            match.
+          </p>
         </motion.div>
+
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
@@ -77,7 +94,7 @@ export default function CoreFeaturesSection() {
               }}
               className="group"
             >
-              <Card className="bg-white border-slate-200 hover:border-electric_indigo/50 transition-all duration-300 shadow-lg hover:shadow-xl transform relative overflow-hidden flex flex-col text-center md:text-left h-full">
+              <Card className="bg-white border-slate-200 hover:border-electric_indigo/50 transition-all duration-300 shadow-lg hover:shadow-xl transform relative overflow-hidden h-full">
                 {/* Liquid hover effect */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-electric_indigo/5 to-drip_teal/5 opacity-0 group-hover:opacity-100"
@@ -89,9 +106,9 @@ export default function CoreFeaturesSection() {
                   }}
                 />
 
-                <CardHeader className="items-center md:items-start relative z-10">
+                <CardHeader className="text-center relative z-10 pb-4">
                   <motion.div
-                    className="p-3 rounded-full bg-electric_indigo/10 mb-4 inline-block relative"
+                    className="p-4 rounded-full bg-electric_indigo/10 mb-4 inline-block relative mx-auto"
                     whileHover={{
                       scale: 1.1,
                       rotate: 5,
@@ -122,8 +139,8 @@ export default function CoreFeaturesSection() {
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow relative z-10">
-                  <p className="text-slate_gray">{feature.description}</p>
+                <CardContent className="text-center relative z-10 pt-0">
+                  <p className="text-slate_gray leading-relaxed">{feature.description}</p>
                 </CardContent>
 
                 {/* Drip effect at bottom */}

@@ -8,9 +8,9 @@ import { motion } from "framer-motion"
 
 // Define header height and original padding values (in rem)
 const headerHeightPx = 80 // Approximate height of your sticky header in pixels
-const originalPtRem = 7 // Original top padding in rem (e.g., py-28 -> 7rem top, 7rem bottom)
-const originalMdPtRem = 8 // Original medium screen top padding in rem (e.g., md:py-32 -> 8rem top, 8rem bottom)
-const originalPbRem = 7
+const originalPtRem = 6 // Reduced from 7 for better proportions
+const originalMdPtRem = 8 // Keep medium screen padding
+const originalPbRem = 6 // Reduced from 7
 const originalMdPbRem = 8
 
 export default function FeaturesHero() {
@@ -31,7 +31,7 @@ export default function FeaturesHero() {
 
       setNewPtPx(currentOriginalPtPx + headerHeightPx)
       setNewMdPtPx(currentOriginalMdPtPx + headerHeightPx)
-      setNewPbPx(currentOriginalPbPx) // Keep original bottom padding
+      setNewPbPx(currentOriginalPbPx)
       setNewMdPbPx(currentOriginalMdPbPx)
     }
 
@@ -118,7 +118,7 @@ export default function FeaturesHero() {
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-16 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.h1
             className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             initial={{ opacity: 0, y: 30 }}
@@ -133,7 +133,7 @@ export default function FeaturesHero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Designed for the Multi-Chain Web3 Stack.
+              Designed for Web3.
               <motion.div
                 className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-electric_indigo via-drip_teal to-electric_indigo rounded-full"
                 initial={{ scaleX: 0 }}
@@ -154,7 +154,7 @@ export default function FeaturesHero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -162,7 +162,6 @@ export default function FeaturesHero() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                variant="secondary"
                 asChild
                 className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold"
               >
@@ -188,14 +187,14 @@ export default function FeaturesHero() {
           </motion.div>
 
           <motion.div
-            className="relative mt-12 md:mt-16 max-w-4xl mx-auto h-64 md:h-80 lg:h-96 opacity-90 group"
+            className="relative max-w-4xl mx-auto h-48 md:h-64 lg:h-80 opacity-90 group"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             whileHover={{ scale: 1.02 }}
           >
             <Image
-              src="/placeholder.svg?height=600&width=1000"
+              src="/placeholder.svg?height=400&width=800"
               alt="Smart Contract Flow Diagram"
               layout="fill"
               objectFit="contain"
