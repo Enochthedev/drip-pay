@@ -123,7 +123,7 @@ export const faqData: FAQItem[] = [
 export const renderFeatureValue = (value: string | boolean) => {
   if (typeof value === "boolean") {
     return value ? (
-      <Check className="h-5 w-5 text-drip_teal mx-auto" />
+      <Check className="h-5 w-5 text-drip-teal mx-auto" />
     ) : (
       <X className="h-5 w-5 text-slate-400 mx-auto" />
     )
