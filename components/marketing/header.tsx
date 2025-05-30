@@ -25,7 +25,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener("scroll", handleScroll)
-    handleScroll() // Set initial state
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -44,7 +44,7 @@ export default function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out py-2",
-        "bg-transparent border-b border-transparent" /* Always transparent, no shadow or backdrop on the header bar itself */,
+        "bg-transparent border-b border-transparent",
       )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -56,13 +56,7 @@ export default function Header() {
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
-          <Image
-            src="/images/drippay-logo.png"
-            alt="DripPay Logo"
-            width={28}
-            height={28} // Corrected: Removed stray backslash
-            priority // Simplified boolean prop, comment moved or removed for clarity during fix
-          />
+          <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={28} height={28} priority />
           <span
             className={cn(
               "ml-2 text-lg font-grotesk font-bold",
@@ -100,7 +94,7 @@ export default function Header() {
         <div
           className={cn(
             baseGroupStyle,
-            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center" /* Added items-center */,
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center",
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
@@ -118,7 +112,7 @@ export default function Header() {
             Docs
             <ArrowUpRight className="ml-1 h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
           </Link>
-          <Button // "Join Waitlist" button is always styled prominently
+          <Button
             asChild
             size="sm"
             className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold rounded-full px-4 text-xs shadow-md h-8"
@@ -134,9 +128,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={cn(
               "hover:bg-slate-200/70 rounded-full",
-              isScrolled || mobileMenuOpen
-                ? scrolledTextColor
-                : transparentLogoTextColor /* Use logo text color for consistency */,
+              isScrolled || mobileMenuOpen ? scrolledTextColor : transparentLogoTextColor,
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
