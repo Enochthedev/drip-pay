@@ -51,16 +51,16 @@ export default function HeroSection() {
         </svg>
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="text-center md:text-left">
             <div className="mb-6 md:mb-8 flex justify-center md:justify-start">
               <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={180} height={45} priority />
             </div>
-            <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-ghost_white">
+            <h1 className="font-grotesk text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 text-ghost_white">
               <span className="block">Automated Crypto Billing.</span>
               <span className="block text-electric_indigo">Built for Restakers.</span>
             </h1>
-            <p className="font-sans text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto md:mx-0">
+            <p className="font-sans text-base sm:text-lg md:text-xl text-slate-300 mb-6 md:mb-8 max-w-xl mx-auto md:mx-0">
               Start on Swell. Scale anywhere. DripPay brings seamless, smart contract-based subscriptions to the next
               generation of Web3 products.
             </p>
@@ -68,25 +68,25 @@ export default function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-electric_indigo hover:bg-opacity-85 text-ghost_white font-semibold text-lg px-8 py-3 shadow-[0_4px_14px_0_rgba(90,72,242,0.39)] hover:shadow-[0_6px_20px_0_rgba(90,72,242,0.23)] transform transition-all duration-300 hover:scale-105"
+                className="bg-electric_indigo hover:bg-opacity-85 text-ghost_white font-semibold text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 shadow-[0_4px_14px_0_rgba(90,72,242,0.39)] hover:shadow-[0_6px_20px_0_rgba(90,72,242,0.23)] transform transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               >
                 <Link href="#launch">
-                  Launch on Swell <Zap className="ml-2 h-5 w-5" />
+                  Launch on Swell <Zap className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-electric_indigo text-electric_indigo hover:bg-electric_indigo hover:text-ghost_white font-semibold text-lg px-8 py-3 shadow-lg transform transition-all duration-300 hover:scale-105"
+                className="border-electric_indigo text-electric_indigo hover:bg-electric_indigo hover:text-ghost_white font-semibold text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 shadow-lg transform transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               >
                 <Link href="#how-it-works">
-                  See How It Works <ArrowRight className="ml-2 h-5 w-5" />
+                  See How It Works <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
               </Button>
             </div>
           </div>
-          <div className="relative h-64 md:h-96">
+          <div className="relative h-48 sm:h-64 md:h-96 mt-4 md:mt-0">
             {/* Visual: Animated flow from wallet → smart contract → recurring payments */}
             <Image
               src="/placeholder.svg?height=384&width=512"
