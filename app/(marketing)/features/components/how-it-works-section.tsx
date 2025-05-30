@@ -24,37 +24,35 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-midnight_navy font-grotesk">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-midnight_navy font-grotesk">
             How <span className="text-electric_indigo">DripPay</span> Fits Into Your App
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {steps.map((step) => (
             <Card key={step.title} className="bg-ghost_white/50 border-slate-200 shadow-md text-center">
-              <CardHeader className="items-center pt-6 pb-3 sm:pt-8 sm:pb-4">
-                <div className="p-2 sm:p-3 rounded-full bg-drip_teal/10 mb-3 sm:mb-4 inline-block">
-                  <step.icon className="h-8 w-8 sm:h-10 sm:w-10 text-drip_teal" />
+              <CardHeader className="items-center">
+                <div className="p-3 rounded-full bg-drip_teal/10 mb-4 inline-block">
+                  <step.icon className="h-10 w-10 text-drip_teal" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold text-midnight_navy font-grotesk">
-                  {step.title}
-                </CardTitle>
+                <CardTitle className="text-xl font-semibold text-midnight_navy font-grotesk">{step.title}</CardTitle>
               </CardHeader>
-              <CardContent className="pt-0 px-4 sm:px-6">
-                <p className="text-slate_gray text-sm sm:text-base">{step.description}</p>
+              <CardContent>
+                <p className="text-slate_gray">{step.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-          <div className="bg-slate-800 p-4 sm:p-6 rounded-lg shadow-xl order-2 md:order-1">
-            <p className="text-xs sm:text-sm font-mono text-slate-400 mb-2">// Example: Creating a subscription</p>
-            <pre className="text-electric_indigo/90 overflow-x-auto">
-              <code className="language-javascript text-xs sm:text-sm font-mono">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="bg-slate-800 p-6 rounded-lg shadow-xl">
+            <p className="text-sm font-mono text-slate-400 mb-2">// Example: Creating a subscription</p>
+            <pre className="text-electric_indigo/90">
+              <code className="language-javascript text-sm font-mono">
                 <span className="text-sky-300">const</span> dripPay = <span className="text-purple-300">new</span>{" "}
                 <span className="text-yellow-300">DripPay</span>(provider);{"\n"}
                 <span className="text-sky-300">await</span> dripPay.createSubscription(&#123;{"\n"}
@@ -69,8 +67,8 @@ export default function HowItWorksSection() {
               </code>
             </pre>
           </div>
-          <div className="text-center md:text-left order-1 md:order-2">
-            <div className="relative h-40 sm:h-48 md:h-64 w-full max-w-md mx-auto md:mx-0 opacity-80">
+          <div className="text-center md:text-left">
+            <div className="relative h-48 md:h-64 w-full max-w-md mx-auto md:mx-0 opacity-80">
               <Image
                 src="/placeholder.svg?height=400&width=600"
                 alt="Automated Logic Loop"
@@ -79,7 +77,7 @@ export default function HowItWorksSection() {
                 className="rounded-lg"
               />
             </div>
-            <p className="text-slate_gray mt-3 sm:mt-4 text-center text-sm sm:text-base">
+            <p className="text-slate_gray mt-4 text-center">
               Our protocol handles the recurring logic, so you can focus on your application's core features.
             </p>
           </div>

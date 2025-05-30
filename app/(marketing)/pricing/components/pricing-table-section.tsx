@@ -4,8 +4,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { pricingPageFeatures, renderFeatureValue } from "../data/pricing-data" // Assuming pricingTiersData is not needed here directly for columns
-import { useState } from "react"
-import { ChevronDown, ChevronUp } from "lucide-react"
 
 const plans = [
   { name: "Free", cta: "Start for Free", href: "/waitlist", highlight: false, cost: "$0/mo" },
@@ -14,16 +12,10 @@ const plans = [
 ]
 
 export default function PricingTableSection() {
-  const [expandedFeatures, setExpandedFeatures] = useState<boolean>(false)
-
-  // Show only first 5 features by default on mobile
-  const visibleFeatures = expandedFeatures ? pricingPageFeatures : pricingPageFeatures.slice(0, 5)
-
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-ghost_white">
+    <section className="py-16 md:py-24 bg-ghost_white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Desktop version - hidden on mobile */}
-        <div className="hidden md:block max-w-5xl mx-auto overflow-x-auto">
+        <div className="max-w-5xl mx-auto overflow-x-auto">
           <Table className="min-w-[800px] border border-slate-200 rounded-lg shadow-lg">
             <TableHeader className="bg-slate-50">
               <TableRow>
@@ -76,64 +68,6 @@ export default function PricingTableSection() {
               </TableRow>
             </TableBody>
           </Table>
-        </div>
-
-        {/* Mobile version - cards for each plan */}
-        <div className="md:hidden space-y-8">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`rounded-lg shadow-lg border ${plan.highlight ? "border-electric_indigo" : "border-slate-200"} overflow-hidden`}
-            >
-              <div className={`p-4 ${plan.highlight ? "bg-electric_indigo/10" : "bg-slate-50"}`}>
-                <h3 className={`text-xl font-bold ${plan.highlight ? "text-electric_indigo" : "text-midnight_navy"}`}>
-                  {plan.name}
-                </h3>
-                <p className="text-slate_gray font-medium mt-1">{plan.cost}</p>
-              </div>
-
-              <div className="p-4 bg-white">
-                <ul className="space-y-3">
-                  {visibleFeatures.map((feature, idx) => (
-                    <li key={idx} className="flex items-center justify-between text-sm">
-                      <span className="text-slate_gray">{feature.name}</span>
-                      <span>
-                        {plan.name === "Free" && renderFeatureValue(feature.free)}
-                        {plan.name === "Pro" && renderFeatureValue(feature.pro)}
-                        {plan.name === "Enterprise" && renderFeatureValue(feature.enterprise)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {pricingPageFeatures.length > 5 && (
-                  <button
-                    onClick={() => setExpandedFeatures(!expandedFeatures)}
-                    className="w-full mt-4 text-sm text-electric_indigo flex items-center justify-center"
-                  >
-                    {expandedFeatures ? (
-                      <>
-                        Show Less <ChevronUp className="ml-1 h-4 w-4" />
-                      </>
-                    ) : (
-                      <>
-                        Show More <ChevronDown className="ml-1 h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-                )}
-              </div>
-
-              <div className="p-4 bg-slate-50 border-t border-slate-200">
-                <Button
-                  asChild
-                  className={`w-full ${plan.highlight ? "bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white" : "bg-midnight_navy hover:bg-midnight_navy/90 text-ghost_white"}`}
-                >
-                  <Link href={plan.href}>{plan.cta}</Link>
-                </Button>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

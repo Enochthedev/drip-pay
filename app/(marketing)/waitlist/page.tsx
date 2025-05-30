@@ -41,15 +41,15 @@ export default function WaitlistPage() {
   }
 
   return (
-    <div className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-electric_indigo/10 via-ghost_white to-drip_teal/10 min-h-[calc(100vh-4rem)] flex items-center">
+    <div className="py-16 md:py-24 bg-gradient-to-br from-electric_indigo/10 via-ghost_white to-drip_teal/10 min-h-[calc(100vh-4rem)] flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="max-w-2xl mx-auto shadow-2xl border-slate-200">
           <CardHeader className="text-center">
-            <div className="inline-block p-2 sm:p-3 bg-electric_indigo/10 rounded-full mb-3 sm:mb-4">
+            <div className="inline-block p-3 bg-electric_indigo/10 rounded-full mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="40"
+                height="40"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -63,23 +63,23 @@ export default function WaitlistPage() {
                 <path d="m16 19 2 2 4-4" />
               </svg>
             </div>
-            <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold text-midnight_navy">
+            <CardTitle className="text-3xl md:text-4xl font-bold text-midnight_navy">
               Join the DripPay Waitlist
             </CardTitle>
-            <CardDescription className="text-slate_gray/90 text-base sm:text-lg pt-2">
+            <CardDescription className="text-slate_gray/90 text-lg pt-2">
               Be among the first to access DripPay and revolutionize your Web3 billing. Get early updates, feature
               previews, and exclusive benefits.
             </CardDescription>
           </CardHeader>
           <CardContent>
             {status === "success" ? (
-              <div className="text-center py-6 sm:py-8">
-                <CheckCircle className="h-12 w-12 sm:h-16 sm:w-16 text-green-500 mx-auto mb-3 sm:mb-4" />
-                <p className="text-lg sm:text-xl font-semibold text-midnight_navy mb-2">You're on the list!</p>
-                <p className="text-slate_gray text-sm sm:text-base">{message}</p>
+              <div className="text-center py-8">
+                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                <p className="text-xl font-semibold text-midnight_navy mb-2">You're on the list!</p>
+                <p className="text-slate_gray">{message}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="email" className="font-medium text-midnight_navy">
                     Email Address <span className="text-red-500">*</span>
@@ -136,14 +136,10 @@ export default function WaitlistPage() {
                 {status === "error" && <p className="text-sm text-red-600">{message}</p>}
                 <Button
                   type="submit"
-                  className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white text-base sm:text-lg py-2.5 sm:py-3"
+                  className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white text-lg py-3"
                   disabled={status === "loading"}
                 >
-                  {status === "loading" ? (
-                    <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
-                  ) : (
-                    "Join Waitlist"
-                  )}
+                  {status === "loading" ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : "Join Waitlist"}
                 </Button>
               </form>
             )}
