@@ -1,5 +1,5 @@
 import PricingHero from "./components/pricing-hero"
-import PricingTableSection from "./components/pricing-table-section"
+import PricingCardsSection from "./components/pricing-cards-section"
 import OnchainWatchIntegration from "./components/onchain-watch-integration"
 import InteractiveTestPrompt from "./components/interactive-test-prompt"
 import PricingAddOns from "./components/pricing-add-ons"
@@ -23,7 +23,7 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <PricingTableSection />
+          <PricingCardsSection />
 
           <OnchainWatchIntegration />
           <InteractiveTestPrompt />
