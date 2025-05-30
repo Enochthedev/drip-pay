@@ -7,8 +7,6 @@ import EcosystemSection from "@/components/marketing/ecosystem-section"
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {" "}
-      {/* Removed bg/text classes, handled by body style */}
       <HeroSection />
       <main className="flex-grow">
         <WhyDripPaySection />
