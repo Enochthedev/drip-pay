@@ -25,33 +25,29 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener("scroll", handleScroll)
-    handleScroll() // Set initial state
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const baseGroupStyle = "transition-all duration-300 ease-in-out flex items-center"
-  // Group styles when header has its own light background (scrolled)
   const scrolledGroupStyle = "bg-white/70 backdrop-blur-md shadow-sm border border-slate-200/60"
-  // Group styles when header is transparent (at the top)
   const transparentGroupStyle = "bg-transparent shadow-none border border-transparent"
 
-  // Text colors
-  const scrolledTextColor = "text-midnight_navy" // For dark text on light header bg
-  const transparentTextColor = "text-slate-200" // For light text on transparent header (over dark hero)
+  const scrolledTextColor = "text-midnight_navy"
+  const transparentTextColor = "text-slate-200"
   const transparentLogoTextColor = "text-ghost_white"
 
-  const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50" // Active link on transparent header
-  const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10" // Active link on scrolled header
+  const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50"
+  const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10"
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out py-2",
-        "bg-transparent border-b border-transparent", // Always transparent, no shadow or backdrop on the header bar itself
+        "bg-transparent border-b border-transparent",
       )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Group 1: Logo + Name */}
         <Link
           href="/"
           className={cn(
@@ -60,14 +56,7 @@ export default function Header() {
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
-          <Image
-            src="/images/drippay-logo.png"
-            alt="DripPay Logo"
-            width={28}
-            height={28}
-            priority
-            // No filter needed if logo is designed to be visible on dark/light
-          />
+          <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={28} height={28} priority />
           <span
             className={cn(
               "ml-2 text-lg font-grotesk font-bold",
@@ -78,7 +67,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Group 2: Desktop Navigation */}
         <nav
           className={cn(
             baseGroupStyle,
@@ -103,11 +91,10 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Group 3: CTAs */}
         <div
           className={cn(
             baseGroupStyle,
-            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center", // Added items-center
+            "hidden md:flex space-x-2 px-3 py-1.5 rounded-full items-center",
             isScrolled ? scrolledGroupStyle : transparentGroupStyle,
           )}
         >
@@ -125,7 +112,7 @@ export default function Header() {
             Docs
             <ArrowUpRight className="ml-1 h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
           </Link>
-          <Button // "Join Waitlist" button is always styled prominently
+          <Button
             asChild
             size="sm"
             className="bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold rounded-full px-4 text-xs shadow-md h-8"
@@ -134,7 +121,6 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -142,7 +128,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={cn(
               "hover:bg-slate-200/70 rounded-full",
-              isScrolled || mobileMenuOpen ? scrolledTextColor : transparentLogoTextColor, // Use logo text color for consistency
+              isScrolled || mobileMenuOpen ? scrolledTextColor : transparentLogoTextColor,
             )}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -151,7 +137,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu (uses light background when open) */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-ghost_white shadow-lg pb-4 border-t border-slate-200/80">
           <nav className="flex flex-col space-y-1 px-4 pt-3">
@@ -192,7 +177,7 @@ export default function Header() {
                 className="w-full border-slate-300 text-midnight_navy hover:bg-slate-100 hover:border-slate-400"
                 asChild
               >
-                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="/dashboard" scroll={false} onClick={() => setMobileMenuOpen(false)}>
                   Dashboard
                 </Link>
               </Button>

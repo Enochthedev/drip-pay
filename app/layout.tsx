@@ -17,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -25,9 +27,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans text-slate_gray bg-ghost_white">
-        {/* ThemeProvider can be kept if you plan to support dark mode based on system preference or a toggle,
-          otherwise, if it's strictly light mode, you can remove it and its related files.
-          For now, I'll keep it as it doesn't hurt. */}
+        {/* 
+  ThemeProvider can be kept if you plan to support dark mode based on system preference or a toggle,
+  otherwise, if it's strictly light mode, you can remove it and its related files.
+  For now, I'll keep it as it doesn't hurt. 
+*/}
         <ThemeProvider
           attribute="class"
           defaultTheme="light" // Forcing light theme based on Ghost White background

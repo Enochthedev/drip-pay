@@ -3,93 +3,63 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif; /* Changed default body font */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  /* Custom utility to ensure an element is not blurred if its parent has blur */
+  .custom-no-blur {
+    filter: none !important; /* Override any inherited blur */
+  }
 }
 
 @layer base {
   :root {
-    --background: 230 20% 98%; /* Ghost White approx HSL */
-    --foreground: 240 4% 18%; /* Slate Gray approx HSL */
+    --background: 224 71% 11%; /* Default to Midnight Navy for dark theme */
+    --foreground: 230 20% 90%; /* Default to light gray for text */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 240 4% 18%; /* Slate Gray */
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 4% 18%;
-
-    --primary: 245 88% 61%; /* Electric Indigo */
-    --primary-foreground: 230 20% 98%; /* Ghost White */
-
-    --secondary: 172 100% 38%; /* Drip Teal */
-    --secondary-foreground: 224 71% 11%; /* Midnight Navy */
-
-    --muted: 220 13% 91%; /* Default shadcn muted */
-    --muted-foreground: 220 9% 46%; /* Default shadcn muted-foreground */
-
-    --accent: 172 100% 38%; /* Drip Teal for accent */
-    --accent-foreground: 224 71% 11%; /* Midnight Navy */
-
-    --destructive: 0 100% 71%; /* Soft Blush Coral */
-    --destructive-foreground: 230 20% 98%; /* Ghost White */
-
-    --border: 220 13% 85%; /* Lighter border for light theme */
-    --input: 220 13% 88%; /* Lighter input for light theme */
-    --ring: 245 88% 61%; /* Electric Indigo for ring */
-
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    /* Example dark theme variables, can be refined */
-    --background: 224 71% 11%; /* Midnight Navy */
-    --foreground: 230 20% 90%; /* Light gray for text on dark bg */
-
-    --card: 224 71% 15%; /* Slightly lighter navy for cards */
+    --card: 224 71% 15%;
     --card-foreground: 230 20% 90%;
 
     --popover: 224 71% 11%;
     --popover-foreground: 230 20% 90%;
 
-    --primary: 245 88% 68%; /* Brighter Electric Indigo for dark */
-    --primary-foreground: 224 71% 11%; /* Midnight Navy */
+    --primary: 245 88% 68%; /* Electric Indigo (brighter for dark) */
+    --primary-foreground: 224 71% 11%;
 
-    --secondary: 172 100% 45%; /* Brighter Drip Teal for dark */
-    --secondary-foreground: 230 20% 98%; /* Ghost White */
+    --secondary: 172 100% 45%; /* Drip Teal (brighter for dark) */
+    --secondary-foreground: 230 20% 98%;
 
     --muted: 224 71% 20%;
     --muted-foreground: 230 20% 60%;
 
-    --accent: 172 100% 45%;
+    --accent: 172 100% 45%; /* Drip Teal */
     --accent-foreground: 230 20% 98%;
 
-    --destructive: 0 100% 75%; /* Brighter Coral for dark */
+    --destructive: 0 100% 75%; /* Soft Blush Coral (brighter for dark) */
     --destructive-foreground: 224 71% 11%;
 
-    --border: 224 71% 25%;
+    --border: 224 71% 25%; /* Darker border for dark theme */
     --input: 224 71% 25%;
-    --ring: 245 88% 68%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 245 88% 68%; /* Electric Indigo for ring */
+
+    --radius: 0.5rem;
+  }
+
+  /* Specific light theme variables if needed, but page is dark by default now */
+  .light-theme-override {
+    --background: 230 20% 98%; /* Ghost White */
+    --foreground: 240 4% 18%; /* Slate Gray */
+    /* ... other light theme vars ... */
   }
 }
 
