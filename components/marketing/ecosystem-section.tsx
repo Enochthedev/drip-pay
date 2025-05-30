@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { MessageSquare } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
+import { NetworkSwell } from "@web3icons/react"
 
 export default function EcosystemSection() {
   return (
@@ -12,7 +12,7 @@ export default function EcosystemSection() {
         </h2>
         <div className="flex justify-center items-center flex-wrap gap-4 mb-6 sm:mb-8">
           <div className="relative h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20">
-            <Image src="/placeholder.svg?height=80&width=80" alt="Swell Logo" layout="fill" objectFit="contain" />
+            <NetworkSwell className="w-full h-full text-green-400" />
           </div>
           <span className="text-base sm:text-lg md:text-xl font-semibold bg-electric_indigo/10 text-electric_indigo px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium">
             Powered by Swell L2
