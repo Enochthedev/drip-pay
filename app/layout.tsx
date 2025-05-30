@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import PageTransition from "@/components/page-transition"
+import DripCursor from "@/components/drip-cursor"
 
 export const metadata: Metadata = {
   title: "DripPay - Automated Crypto Billing",
@@ -36,7 +38,8 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <DripCursor />
+          <PageTransition>{children}</PageTransition>
         </ThemeProvider>
       </body>
     </html>
