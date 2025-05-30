@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { pricingPageFeatures, renderFeatureValue } from "../data/pricing-data"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 const plans = [
@@ -17,7 +17,7 @@ export default function PricingTableSection() {
   const [isScrollable, setIsScrollable] = useState(false)
 
   // Check if table is scrollable on mount and window resize
-  useState(() => {
+  useEffect(() => {
     const checkScrollable = () => {
       const tableContainer = document.querySelector(".pricing-table-container")
       if (tableContainer) {
@@ -25,12 +25,14 @@ export default function PricingTableSection() {
       }
     }
 
+    // Initial check
+    checkScrollable()
+
+    // Add resize listener
     window.addEventListener("resize", checkScrollable)
-    // Run once after render
-    setTimeout(checkScrollable, 100)
 
     return () => window.removeEventListener("resize", checkScrollable)
-  })
+  }, [])
 
   return (
     <section className="py-16 md:py-24 bg-ghost_white">
