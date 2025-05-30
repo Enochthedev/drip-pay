@@ -1,11 +1,45 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function HeroSection() {
+  // Header height is 4rem (64px). We'll use 65px for a slight overdraw.
+  const headerHeightPx = 65
+  const originalPtRem = 5 // py-20 is 5rem
+  const originalMdPtRem = 8 // md:py-32 is 8rem
+
+  // Convert rem to px for calculation (assuming 1rem = 16px)
+  const originalPtPx = originalPtRem * 16
+  const originalMdPtPx = originalMdPtRem * 16
+
+  const newPtPx = originalPtPx + headerHeightPx
+  const newMdPtPx = originalMdPtPx + headerHeightPx
+
   return (
-    <section className="relative bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo overflow-hidden -mt-16 pt-36 pb-20 md:pt-48 md:pb-32">
+    <section
+      className="relative bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo overflow-hidden"
+      style={{
+        marginTop: `-${headerHeightPx}px`,
+        paddingTop: `${newPtPx}px`,
+        paddingBottom: `${originalPtPx}px`, // pb-20 (5rem)
+      }}
+    >
+      {/* Apply responsive padding for medium screens using a wrapper or more complex style logic if needed,
+          For simplicity in this QuickEdit, md specific padding is handled by overriding pt/pb below if necessary,
+          but Tailwind classes in className would be cleaner if this was not a QuickEdit.
+          The style prop here will set base padding. We can add md specific padding classes too.
+      */}
+      <style jsx>{`
+        @media (min-width: 768px) {
+          section {
+            padding-top: ${newMdPtPx}px !important;
+            padding-bottom: ${originalMdPtPx}px !important; /* md:pb-32 (8rem) */
+          }
+        }
+      `}</style>
       <div className="absolute inset-0 opacity-[0.03] animate-pulse">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
