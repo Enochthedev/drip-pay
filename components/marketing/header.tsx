@@ -9,6 +9,15 @@ import { Menu, X, ArrowUpRight, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
+function ClientOnlyMotionWrapper({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  if (!mounted) return null
+  return <>{children}</>
+}
+
 const navLinks = [
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
@@ -189,107 +198,101 @@ export default function Header() {
       </div>
 
       {/* New Mobile Menu Design */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            className="fixed inset-0 bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo z-40 flex flex-col"
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={menuVariants}
-          >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-[0.03]">
-              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="mobileMenuGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#mobileMenuGrid)" />
-              </svg>
-            </div>
-
-            <div className="container mx-auto px-6 py-16 flex flex-col h-full">
-              {/* Logo */}
-              <motion.div className="mb-12 flex justify-center" variants={itemVariants}>
-                <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={140} height={35} priority />
-              </motion.div>
-
-              {/* Navigation Links */}
-              <nav className="flex flex-col items-center space-y-6 mb-auto">
-                {navLinks.map((link) => (
-                  <motion.div key={link.label} variants={itemVariants}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center",
-                        pathname === link.href && "text-electric_indigo",
-                      )}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                      <ChevronRight
-                        className={cn(
-                          "ml-1 h-5 w-5 transition-transform",
-                          pathname === link.href ? "opacity-100" : "opacity-0",
-                        )}
-                      />
-                    </Link>
-                  </motion.div>
-                ))}
-
-                <motion.div variants={itemVariants}>
-                  <Link
-                    href="https://docs.drippay.xyz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Docs
-                    <ArrowUpRight className="ml-1 h-5 w-5 opacity-70" />
-                  </Link>
-                </motion.div>
-              </nav>
-
-              {/* CTA Buttons */}
-              <div className="mt-12 space-y-4">
-                <motion.div variants={buttonVariants}>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg py-6"
-                  >
-                    <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>
-                      Join Waitlist
-                    </Link>
-                  </Button>
-                </motion.div>
-
-                <motion.div variants={buttonVariants}>
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    disabled
-                    className="w-full border-ghost_white/30 text-ghost_white hover:bg-ghost_white/10 font-semibold text-lg py-6"
-                  >
-                    <Link href="#" onClick={() => setMobileMenuOpen(false)}>
-                      Dashboard
-                    </Link>
-                  </Button>
-                </motion.div>
+      <ClientOnlyMotionWrapper>
+        <AnimatePresence initial={false}>
+          {mobileMenuOpen && (
+            <motion.div
+              className="fixed inset-0 bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo z-[100] flex flex-col"
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+            >
+              {/* Background pattern */}
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="mobileMenuGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(90, 72, 242, 0.5)" strokeWidth="0.5" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#mobileMenuGrid)" />
+                </svg>
               </div>
 
-              {/* Footer */}
-              <motion.div className="mt-8 text-center text-sm text-ghost_white/60" variants={buttonVariants}>
-                &copy; {new Date().getFullYear()} DripPay
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <div className="container mx-auto px-6 py-16 flex flex-col h-full">
+                {/* Logo */}
+                <motion.div className="mb-12 flex justify-center" variants={itemVariants}>
+                  <Image src="/images/drippay-logo.png" alt="DripPay Logo" width={140} height={35} priority />
+                </motion.div>
+
+                {/* Navigation Links */}
+                <nav className="flex flex-col items-center space-y-6 mb-auto">
+                  {navLinks.map((link) => (
+                    <motion.div key={link.label} variants={itemVariants}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "pointer-events-auto text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center",
+                          pathname === link.href && "text-electric_indigo",
+                        )}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                        <ChevronRight
+                          className={cn(
+                            "ml-1 h-5 w-5 transition-transform",
+                            pathname === link.href ? "opacity-100" : "opacity-0",
+                          )}
+                        />
+                      </Link>
+                    </motion.div>
+                  ))}
+
+                  <motion.div variants={itemVariants}>
+                    <Link
+                      href="https://docs.drippay.xyz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pointer-events-auto text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Docs
+                      <ArrowUpRight className="ml-1 h-5 w-5 opacity-70" />
+                    </Link>
+                  </motion.div>
+                </nav>
+
+                {/* CTA Buttons */}
+                <div className="mt-12 space-y-4">
+                  <motion.div variants={buttonVariants}>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg py-6"
+                    >
+                      <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                        Join Waitlist
+                      </Link>
+                    </Button>
+                  </motion.div>
+
+                  <motion.div variants={buttonVariants}>
+                    <div className="w-full border-ghost_white/30 text-ghost_white bg-ghost_white/10 font-semibold text-lg py-6 rounded-md text-center opacity-50 cursor-not-allowed select-none">
+                      Dashboard
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Footer */}
+                <motion.div className="mt-8 text-center text-sm text-ghost_white/60" variants={buttonVariants}>
+                  &copy; {new Date().getFullYear()} DripPay
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </ClientOnlyMotionWrapper>
     </header>
   )
 }

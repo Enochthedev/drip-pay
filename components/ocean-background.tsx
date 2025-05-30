@@ -9,6 +9,7 @@ interface OceanBackgroundProps {
 }
 
 export default function OceanBackground({ intensity = "light", className = "" }: OceanBackgroundProps) {
+  const [mounted, setMounted] = useState(false)
   const [droplets, setDroplets] = useState<
     Array<{
       id: number
@@ -19,6 +20,10 @@ export default function OceanBackground({ intensity = "light", className = "" }:
       delay: number
     }>
   >([])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const dropletCount = intensity === "light" ? 15 : intensity === "medium" ? 25 : 40
@@ -34,6 +39,8 @@ export default function OceanBackground({ intensity = "light", className = "" }:
 
     setDroplets(newDroplets)
   }, [intensity])
+
+  if (!mounted) return null
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
