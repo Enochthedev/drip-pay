@@ -192,7 +192,7 @@ export default function Header() {
                 className="w-full border-slate-300 text-midnight_navy hover:bg-slate-100 hover:border-slate-400"
                 asChild
               >
-                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="/dashboard" scroll={false} onClick={() => setMobileMenuOpen(false)}>
                   Dashboard
                 </Link>
               </Button>
