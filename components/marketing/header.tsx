@@ -5,9 +5,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X, ArrowUpRight, ChevronRight, ChevronDown } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
-import { AnimatePresence, motion, type PanInfo, useAnimation } from "framer-motion"
+import { Menu, X, ArrowUpRight, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
 const navLinks = [
   { href: "/features", label: "Features" },
@@ -20,9 +20,6 @@ export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isDragging, setIsDragging] = useState(false)
-  const menuControls = useAnimation()
-  const dragConstraintsRef = useRef(null)
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -55,31 +52,6 @@ export default function Header() {
 
   const activeLinkTransparentBg = "text-ghost_white bg-slate-700/50"
   const activeLinkScrolledBg = "text-electric_indigo bg-electric_indigo/10"
-
-  // Handle drag end for swipe down to close
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false)
-
-    // If dragged down more than 100px or with velocity > 500, close the menu
-    if (info.offset.y > 100 || info.velocity.y > 500) {
-      menuControls
-        .start({
-          y: "100%",
-          opacity: 0,
-          transition: { duration: 0.4, ease: [0.32, 0.72, 0, 1] },
-        })
-        .then(() => {
-          setMobileMenuOpen(false)
-        })
-    } else {
-      // Otherwise snap back
-      menuControls.start({
-        y: 0,
-        opacity: 1,
-        transition: { type: "spring", stiffness: 300, damping: 30 },
-      })
-    }
-  }
 
   // Animation variants for mobile menu
   const menuVariants = {
@@ -216,40 +188,16 @@ export default function Header() {
         </div>
       </div>
 
-      {/* New Mobile Menu Design with Swipe Down to Close */}
+      {/* New Mobile Menu Design */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            ref={dragConstraintsRef}
             className="fixed inset-0 bg-gradient-to-br from-midnight_navy via-slate-900 to-electric_indigo z-40 flex flex-col"
             initial="closed"
-            animate={menuControls}
+            animate="open"
             exit="closed"
             variants={menuVariants}
-            drag="y"
-            dragDirectionLock
-            dragElastic={0.2}
-            dragConstraints={{ top: 0, bottom: 0 }}
-            onDragStart={() => setIsDragging(true)}
-            onDragEnd={handleDragEnd}
-            style={{ touchAction: "none" }}
           >
-            {/* Swipe indicator */}
-            <div className="absolute top-4 left-0 right-0 flex justify-center pointer-events-none">
-              <div className="w-12 h-1 bg-ghost_white/30 rounded-full"></div>
-            </div>
-
-            {/* Swipe hint animation */}
-            <motion.div
-              className="absolute top-10 left-0 right-0 flex justify-center items-center text-ghost_white/50 pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              <ChevronDown className="h-6 w-6 animate-bounce" />
-              <span className="text-xs ml-1">Swipe down to close</span>
-            </motion.div>
-
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-[0.03]">
               <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +225,6 @@ export default function Header() {
                       className={cn(
                         "text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center",
                         pathname === link.href && "text-electric_indigo",
-                        isDragging ? "pointer-events-none" : "pointer-events-auto",
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -297,10 +244,7 @@ export default function Header() {
                     href="https://docs.drippay.xyz"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn(
-                      "text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center",
-                      isDragging ? "pointer-events-none" : "pointer-events-auto",
-                    )}
+                    className="text-2xl font-grotesk font-semibold text-ghost_white hover:text-electric_indigo transition-colors flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Docs
@@ -315,10 +259,7 @@ export default function Header() {
                   <Button
                     asChild
                     size="lg"
-                    className={cn(
-                      "w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg py-6",
-                      isDragging ? "pointer-events-none" : "pointer-events-auto",
-                    )}
+                    className="w-full bg-electric_indigo hover:bg-electric_indigo/90 text-ghost_white font-semibold text-lg py-6"
                   >
                     <Link href="/waitlist" onClick={() => setMobileMenuOpen(false)}>
                       Join Waitlist
@@ -331,12 +272,10 @@ export default function Header() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className={cn(
-                      "w-full border-ghost_white/30 text-ghost_white hover:bg-ghost_white/10 font-semibold text-lg py-6",
-                      isDragging ? "pointer-events-none" : "pointer-events-auto",
-                    )}
+                    disabled
+                    className="w-full border-ghost_white/30 text-ghost_white hover:bg-ghost_white/10 font-semibold text-lg py-6"
                   >
-                    <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="#" onClick={() => setMobileMenuOpen(false)}>
                       Dashboard
                     </Link>
                   </Button>
