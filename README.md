@@ -9,7 +9,7 @@ DripPay is a crypto-native billing platform designed specifically for streamline
 Check out our live landing page:
 
 ## 👉 DripPay Landing Page
-**[https://drip-pay.vercel.app/](drip-pay)
+**[https://drip-pay.vercel.app/](drip-pay)**
 
 ### 🚀 Features
 	•	Seamless Subscriptions: Automate your subscription payments directly on-chain.
