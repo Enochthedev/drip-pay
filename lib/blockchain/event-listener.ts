@@ -5,6 +5,18 @@ import { prisma } from '../db'
 import { dispatchWebhook } from './webhook-dispatcher'
 
 /**
+ * Number of confirmations to wait before processing events (reorg protection)
+ */
+const CONFIRMATION_BLOCKS: Record<number, number> = {
+  1: 12,     // Ethereum: 12 blocks (~3 minutes)
+  1923: 6,   // Swell: 6 blocks
+  42161: 1,  // Arbitrum: Very fast finality
+  8453: 1,   // Base: Fast finality
+  137: 128,  // Polygon: Higher reorg risk
+  10: 1,     // Optimism: Fast finality
+}
+
+/**
  * Listen for subscription events on a specific chain
  */
 export async function listenForSubscriptionEvents(chainId: number) {
@@ -16,8 +28,9 @@ export async function listenForSubscriptionEvents(chainId: number) {
   }
 
   const client = getPublicClient(chainId)
+  const confirmations = CONFIRMATION_BLOCKS[chainId] || 12
 
-  console.log(`Starting event listener for chain ${chainId}...`)
+  console.log(`Starting event listener for chain ${chainId} (waiting ${confirmations} confirmations)...`)
 
   // Get last synced block
   let lastSyncedBlock = await getLastSyncedBlock(chainId)
@@ -26,14 +39,22 @@ export async function listenForSubscriptionEvents(chainId: number) {
   client.watchBlockNumber({
     onBlockNumber: async (blockNumber) => {
       try {
-        // Process events from last synced block to current
-        await processEventsInRange(chainId, lastSyncedBlock + BigInt(1), blockNumber)
-        lastSyncedBlock = blockNumber
+        // Only process blocks that have enough confirmations (reorg protection)
+        const safeBlock = blockNumber - BigInt(confirmations)
+
+        if (safeBlock <= lastSyncedBlock) {
+          return // Not enough new confirmed blocks yet
+        }
+
+        // Process events from last synced block to safe block
+        await processEventsInRange(chainId, lastSyncedBlock + BigInt(1), safeBlock)
+        lastSyncedBlock = safeBlock
 
         // Update sync status
-        await updateLastSyncedBlock(chainId, Number(blockNumber))
+        await updateLastSyncedBlock(chainId, Number(safeBlock))
       } catch (error) {
         console.error(`Error processing events for chain ${chainId}:`, error)
+        // Don't crash, just log and continue
       }
     },
   })
