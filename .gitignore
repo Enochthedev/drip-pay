@@ -25,3 +25,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Hardhat
+cache/
+artifacts/
+
+# Prisma
+prisma/migrations/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
