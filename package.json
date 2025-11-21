@@ -13,6 +13,11 @@
     "db:studio": "prisma studio",
     "db:init": "tsx scripts/init-db.ts",
     "listener:start": "tsx scripts/start-listener.ts",
+    "resync": "tsx scripts/resync-events.ts",
+    "test": "hardhat test",
+    "test:contracts": "hardhat test test/DripPaySubscription.test.ts",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
