@@ -3,13 +3,15 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title DripPaySubscription
  * @dev Smart contract for managing recurring subscription payments on blockchain
+ * @notice Includes emergency pause functionality for security
  */
-contract DripPaySubscription is ReentrancyGuard, Ownable {
+contract DripPaySubscription is ReentrancyGuard, Pausable, Ownable {
 
     struct Subscription {
         address subscriber;
@@ -87,7 +89,7 @@ contract DripPaySubscription is ReentrancyGuard, Ownable {
         address tokenAddress,
         uint256 amount,
         uint256 interval
-    ) external returns (uint256) {
+    ) external whenNotPaused returns (uint256) {
         require(recipient != address(0), "Invalid recipient");
         require(tokenAddress != address(0), "Invalid token");
         require(amount > 0, "Amount must be greater than 0");
@@ -336,5 +338,27 @@ contract DripPaySubscription is ReentrancyGuard, Ownable {
     function updateFeeCollector(address newCollector) external onlyOwner {
         require(newCollector != address(0), "Invalid address");
         feeCollector = newCollector;
+    }
+
+    /**
+     * @dev Pause the contract (only owner)
+     * @notice Prevents new subscriptions and payments during emergency
+     */
+    function pause() external onlyOwner {
+        _pause();
+    }
+
+    /**
+     * @dev Unpause the contract (only owner)
+     */
+    function unpause() external onlyOwner {
+        _unpause();
+    }
+
+    /**
+     * @dev Check if contract is paused
+     */
+    function isPaused() external view returns (bool) {
+        return paused();
     }
 }
