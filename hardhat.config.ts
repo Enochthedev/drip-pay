@@ -15,7 +15,28 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
-    // Swell Chain (Live)
+    // ========== TESTNETS ==========
+    // Swell Testnet
+    swellTestnet: {
+      url: process.env.SWELL_TESTNET_RPC_URL || "https://swell-testnet.alt.technology",
+      accounts: process.env.TESTNET_PRIVATE_KEY ? [process.env.TESTNET_PRIVATE_KEY] : [],
+      chainId: 1923, // Update if different for testnet
+    },
+    // Ethereum Sepolia
+    sepolia: {
+      url: process.env.ETHEREUM_RPC_URL || `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      accounts: process.env.TESTNET_PRIVATE_KEY ? [process.env.TESTNET_PRIVATE_KEY] : [],
+      chainId: 11155111,
+    },
+    // Base Sepolia
+    baseSepolia: {
+      url: process.env.BASE_RPC_URL || `https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      accounts: process.env.TESTNET_PRIVATE_KEY ? [process.env.TESTNET_PRIVATE_KEY] : [],
+      chainId: 84532,
+    },
+
+    // ========== MAINNETS ==========
+    // Swell Chain
     swell: {
       url: process.env.SWELL_RPC_URL || "https://swell-mainnet.alt.technology",
       accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
@@ -23,33 +44,15 @@ const config: HardhatUserConfig = {
     },
     // Ethereum Mainnet
     ethereum: {
-      url: process.env.ETHEREUM_RPC_URL || "",
+      url: process.env.ETHEREUM_RPC_URL || `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
       chainId: 1,
     },
-    // Arbitrum One
-    arbitrum: {
-      url: process.env.ARBITRUM_RPC_URL || "",
-      accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
-      chainId: 42161,
-    },
     // Base
     base: {
-      url: process.env.BASE_RPC_URL || "",
+      url: process.env.BASE_RPC_URL || `https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
       chainId: 8453,
-    },
-    // Polygon
-    polygon: {
-      url: process.env.POLYGON_RPC_URL || "",
-      accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
-      chainId: 137,
-    },
-    // Optimism
-    optimism: {
-      url: process.env.OPTIMISM_RPC_URL || "",
-      accounts: process.env.ADMIN_PRIVATE_KEY ? [process.env.ADMIN_PRIVATE_KEY] : [],
-      chainId: 10,
     },
     // Localhost for testing
     localhost: {
@@ -59,12 +62,23 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
+      // Testnets
+      sepolia: process.env.ETHERSCAN_API_KEY || "",
+      baseSepolia: process.env.BASESCAN_API_KEY || "",
+      // Mainnets
       mainnet: process.env.ETHERSCAN_API_KEY || "",
-      arbitrumOne: process.env.ARBISCAN_API_KEY || "",
-      polygon: process.env.POLYGONSCAN_API_KEY || "",
-      optimisticEthereum: process.env.OPTIMISM_API_KEY || "",
       base: process.env.BASESCAN_API_KEY || "",
     },
+    customChains: [
+      {
+        network: "baseSepolia",
+        chainId: 84532,
+        urls: {
+          apiURL: "https://api-sepolia.basescan.org/api",
+          browserURL: "https://sepolia.basescan.org"
+        }
+      }
+    ]
   },
   paths: {
     sources: "./contracts",
