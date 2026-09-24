@@ -78,7 +78,10 @@ export default function WaitlistPage() {
     setStatus("loading")
     setMessage("")
 
-    // Simulate API call
+    // NOTE: nothing is stored. This fakes a round trip and then tells the
+    // visitor they are on the list. Wiring it to a real endpoint is tracked in
+    // the issue tracker; until then the success copy below is a lie to anyone
+    // who fills the form on the deployed site.
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
     if (email && email.includes("@")) {
