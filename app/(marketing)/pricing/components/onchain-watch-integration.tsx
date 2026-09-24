@@ -103,7 +103,7 @@ export default function OnchainWatchIntegration() {
             }}
           >
             <p className="text-xl font-semibold text-drip_teal italic">
-              "It's like having an on-chain auditor watching your protocol 24/7."
+              &quot;It&apos;s like having an on-chain auditor watching your protocol 24/7.&quot;
             </p>
           </motion.div>
         </div>

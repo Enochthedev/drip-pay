@@ -167,7 +167,7 @@ export default function EcosystemSection() {
               >
                 <NetworkSwell className="w-6 h-6 text-green-400 mb-2" />
                 <h4 className="font-medium text-midnight_navy mb-1">Swell Integration</h4>
-                <p className="text-xs text-slate_gray">Leverages Swell's speed and low transaction costs</p>
+                <p className="text-xs text-slate_gray">Leverages Swell&apos;s speed and low transaction costs</p>
               </motion.div>
 
               <motion.div
