@@ -72,7 +72,7 @@ export default function CoreFeaturesSection() {
             Different?
           </h2>
           <p className="text-lg text-slate_gray max-w-2xl mx-auto">
-            Built from the ground up for Web3, DripPay offers features that traditional billing systems simply can't
+            Built from the ground up for Web3, DripPay offers features that traditional billing systems simply can&apos;t
             match.
           </p>
         </motion.div>

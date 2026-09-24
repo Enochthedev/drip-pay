@@ -5,9 +5,9 @@ export default function PrivacyPage() {
         <article className="prose lg:prose-xl max-w-4xl mx-auto text-slate_gray">
           <h1 className="text-midnight_navy">Privacy Policy</h1>
           <p className="lead">
-            Your privacy is important to us. This Privacy Policy explains how DripPay ("we," "us," or "our") collects,
+            Your privacy is important to us. This Privacy Policy explains how DripPay (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects,
             uses, and discloses information about you when you access or use our website, protocol, and services
-            (collectively, the "Services").
+            (collectively, the &quot;Services&quot;).
           </p>
 
           <h2>1. Information We Collect</h2>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
             access, disclosure, alteration, and destruction. However, no security system is impenetrable.
           </p>
 
-          <h2>7. Children's Privacy</h2>
+          <h2>7. Children&apos;s Privacy</h2>
           <p>
             Our Services are not directed to individuals under the age of 18. We do not knowingly collect personal
             information from children.

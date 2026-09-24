@@ -109,7 +109,7 @@ export default function HowItWorksSection() {
             transition={{ duration: 0.3 }}
           >
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-mono text-slate-400">// Example: Creating a subscription</p>
+              <p className="text-sm font-mono text-slate-400">{"// Example: Creating a subscription"}</p>
               <div className="flex space-x-2">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -121,12 +121,12 @@ export default function HowItWorksSection() {
                 <span className="text-sky-300">const</span> dripPay = <span className="text-purple-300">new</span>{" "}
                 <span className="text-yellow-300">DripPay</span>(provider);{"\n"}
                 <span className="text-sky-300">await</span> dripPay.createSubscription(&#123;{"\n"}
-                {"  "}userAddress: <span className="text-orange-300">'0x123...'</span>,{"\n"}
-                {"  "}tokenAddress: <span className="text-orange-300">'0xDAI...'</span>,{"\n"}
+                {"  "}userAddress: <span className="text-orange-300">&apos;0x123...&apos;</span>,{"\n"}
+                {"  "}tokenAddress: <span className="text-orange-300">&apos;0xDAI...&apos;</span>,{"\n"}
                 {"  "}amount: <span className="text-green-300">ethers.utils.parseUnits</span>(
-                <span className="text-orange-300">'10'</span>, <span className="text-green-300">18</span>),{"\n"}
+                <span className="text-orange-300">&apos;10&apos;</span>, <span className="text-green-300">18</span>),{"\n"}
                 {"  "}interval: <span className="text-green-300">86400</span>{" "}
-                <span className="text-slate-400">// 1 day in seconds</span>
+                <span className="text-slate-400">{"// 1 day in seconds"}</span>
                 {"\n"}
                 &#125;);
               </code>
@@ -153,7 +153,7 @@ export default function HowItWorksSection() {
             </motion.div>
             <h3 className="text-2xl font-bold text-midnight_navy font-grotesk mb-4">Focus on Your Core Features</h3>
             <p className="text-slate_gray text-lg leading-relaxed">
-              Our protocol handles the recurring logic, so you can focus on your application's core features and user
+              Our protocol handles the recurring logic, so you can focus on your application&apos;s core features and user
               experience.
             </p>
           </div>

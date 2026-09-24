@@ -32,7 +32,7 @@ export default function SecurityReliabilitySection() {
             Secure & Reliable <span className="text-electric_indigo">By Design</span>
           </h2>
           <p className="text-lg text-slate_gray mt-4 max-w-2xl mx-auto">
-            Trust and transparency are at the core of DripPay's architecture.
+            Trust and transparency are at the core of DripPay&apos;s architecture.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">

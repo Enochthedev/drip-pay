@@ -5,8 +5,8 @@ export default function TermsPage() {
         <article className="prose lg:prose-xl max-w-4xl mx-auto text-slate_gray">
           <h1 className="text-midnight_navy">Terms of Service</h1>
           <p className="lead">
-            Welcome to DripPay! These Terms of Service ("Terms") govern your access to and use of the DripPay protocol,
-            website, and services (collectively, the "Services"). Please read them carefully.
+            Welcome to DripPay! These Terms of Service (&quot;Terms&quot;) govern your access to and use of the DripPay protocol,
+            website, and services (collectively, the &quot;Services&quot;). Please read them carefully.
           </p>
 
           <h2>1. Acceptance of Terms</h2>
@@ -18,7 +18,7 @@ export default function TermsPage() {
           <h2>2. The DripPay Protocol</h2>
           <p>
             DripPay is a decentralized billing protocol that enables automated, recurring crypto payments via smart
-            contracts. The protocol is non-custodial, meaning DripPay never takes control of users' funds. Transactions
+            contracts. The protocol is non-custodial, meaning DripPay never takes control of users&apos; funds. Transactions
             are processed directly on the blockchain by smart contracts.
           </p>
 
@@ -48,7 +48,7 @@ export default function TermsPage() {
 
           <h2>6. Disclaimers and Limitation of Liability</h2>
           <p>
-            THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+            THE SERVICES ARE PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
             IMPLIED. DRIPPAY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, IMPLIED
             WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
           </p>

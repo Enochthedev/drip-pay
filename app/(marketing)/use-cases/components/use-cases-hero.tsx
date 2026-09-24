@@ -126,7 +126,7 @@ export default function UseCasesHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Whether you're building a DAO tool, NFT platform, or premium community — DripPay makes it easy to get paid
+          Whether you&apos;re building a DAO tool, NFT platform, or premium community — DripPay makes it easy to get paid
           on-chain, again and again.
         </motion.p>
         <motion.div

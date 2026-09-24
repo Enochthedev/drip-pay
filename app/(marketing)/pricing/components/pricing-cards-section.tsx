@@ -7,8 +7,25 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 
+interface PlanFeature {
+  name: string
+  included: boolean
+}
+
+interface PricingPlan {
+  name: string
+  description: string
+  price: string
+  period: string
+  cta: string
+  href: string
+  highlight: boolean
+  badge?: string
+  features: PlanFeature[]
+}
+
 // Define pricing plans
-const pricingPlans = [
+const pricingPlans: PricingPlan[] = [
   {
     name: "Free",
     description: "Perfect for getting started with on-chain billing",
@@ -98,11 +115,11 @@ export default function PricingCardsSection() {
     const cat = featureCategories.find((c) => c.name === category)
     if (!cat) return false
 
-    return cat.features.some((f) => feature.includes(f))
+    return cat.features.some((f: string) => feature.includes(f))
   }
 
   // Get features for a specific category
-  const getCategoryFeatures = (plan: any, category: string) => {
+  const getCategoryFeatures = (plan: PricingPlan, category: string) => {
     return plan.features.filter((f) => isFeatureInCategory(f.name, category))
   }
 

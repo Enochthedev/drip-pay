@@ -131,8 +131,8 @@ export default function ChainsPageHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          DripPay is built to work across the EVM ecosystem. Whether you're building on Swell, Ethereum, or another
-          chain — we've got you covered.
+          DripPay is built to work across the EVM ecosystem. Whether you&apos;re building on Swell, Ethereum, or another
+          chain — we&apos;ve got you covered.
         </motion.p>
         <motion.div
           className="relative max-w-4xl mx-auto h-64 md:h-80 lg:h-96"
